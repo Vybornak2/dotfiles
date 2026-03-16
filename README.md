@@ -28,7 +28,7 @@ This repository provides:
 ## Quick start
 
 ```bash
-git clone <your-repo-url> ~/dotfiles
+git clone https://github.com/Vybornak2/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 chmod +x scripts/install.sh
 ./scripts/install.sh --skip 51-cleanup.sh
