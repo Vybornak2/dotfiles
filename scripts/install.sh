@@ -28,6 +28,7 @@ MODULES=(
   "33-tools-vscode.sh"
   "40-config-links.sh"
   "41-config-nvim-bootstrap.sh"
+  "42-config-git.sh"
   "50-verify.sh"
   "51-cleanup.sh"
 )
