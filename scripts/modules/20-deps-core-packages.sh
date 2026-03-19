@@ -10,8 +10,6 @@ apt_install \
   gpg \
   jq \
   make \
-  nodejs \
-  npm \
   ripgrep \
   software-properties-common \
   tree \

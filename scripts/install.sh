@@ -22,6 +22,7 @@ MODULES=(
   "23-deps-rust.sh"
   "24-deps-lua.sh"
   "25-deps-fonts.sh"
+  "26-deps-node.sh"
   "30-tools-zsh.sh"
   "31-tools-nvim.sh"
   "32-tools-extra-cli.sh"

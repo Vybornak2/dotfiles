@@ -20,7 +20,18 @@ popd >/dev/null
 
 if ! command -v tree-sitter >/dev/null 2>&1; then
   log_info "Installing tree-sitter CLI"
-  sudo npm install -g tree-sitter-cli
+  if ! command -v npm >/dev/null 2>&1 && [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    # shellcheck disable=SC1090
+    . "$NVM_DIR/nvm.sh"
+    nvm use --silent default >/dev/null 2>&1 || true
+  fi
+
+  if command -v npm >/dev/null 2>&1; then
+    npm install -g tree-sitter-cli
+  else
+    log_warn "npm not found; skipping tree-sitter CLI install (run 26-deps-node.sh first)."
+  fi
 else
   log_info "tree-sitter CLI already installed"
 fi
