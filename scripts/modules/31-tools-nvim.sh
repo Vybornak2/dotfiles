@@ -18,6 +18,13 @@ make CMAKE_BUILD_TYPE=Release
 sudo make install
 popd >/dev/null
 
+if ! command -v tree-sitter >/dev/null 2>&1; then
+  log_info "Installing tree-sitter CLI"
+  sudo npm install -g tree-sitter-cli
+else
+  log_info "tree-sitter CLI already installed"
+fi
+
 log_info "Preparing Neovim Python host environment"
 PY_HOST_DIR="$HOME/.local/share/nvim/venv_py"
 PY_HOST_BIN="$PY_HOST_DIR/bin/python"
