@@ -55,16 +55,21 @@ Execution order is defined in `scripts/install.sh`:
 1. `10-setup-preflight.sh`
 2. `11-setup-system-update.sh`
 3. `20-deps-core-packages.sh`
-4. `21-deps-language-toolchains.sh`
-5. `22-deps-fonts.sh`
-6. `30-tools-zsh.sh`
-7. `31-tools-nvim.sh`
-8. `32-tools-extra-cli.sh`
-9. `33-tools-vscode.sh`
-10. `40-config-links.sh`
-11. `41-config-nvim-bootstrap.sh`
-12. `50-verify.sh`
-13. `51-cleanup.sh`
+4. `21-deps-cpp.sh`
+5. `22-deps-python.sh`
+6. `23-deps-rust.sh`
+7. `24-deps-lua.sh`
+8. `25-deps-fonts.sh`
+9. `26-deps-node.sh`
+10. `30-tools-zsh.sh`
+11. `31-tools-nvim.sh`
+12. `32-tools-extra-cli.sh`
+13. `33-tools-vscode.sh`
+14. `40-config-links.sh`
+15. `41-config-nvim-bootstrap.sh`
+16. `42-config-git.sh`
+17. `50-verify.sh`
+18. `51-cleanup.sh`
 
 ## Documentation
 

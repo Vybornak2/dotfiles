@@ -14,12 +14,13 @@ This document tracks the tools, package managers, and extension/plugin dependenc
 - Oh My Zsh framework: <https://ohmyz.sh/>
 - Rustup (Rust toolchain manager): <https://rustup.rs/>
 - uv (Python package/tool manager): <https://docs.astral.sh/uv/>
+- nvm (Node.js version manager): <https://github.com/nvm-sh/nvm>
 - Mason (Neovim external tools manager): <https://github.com/mason-org/mason.nvim>
 - lazy.nvim (Neovim plugin manager): <https://github.com/folke/lazy.nvim>
 
 ## Core CLI tools installed by installer
 
-Source: `scripts/modules/20-deps-core-packages.sh`, `scripts/modules/32-tools-extra-cli.sh`
+Source: `scripts/modules/20-deps-core-packages.sh`, `scripts/modules/26-deps-node.sh`, `scripts/modules/32-tools-extra-cli.sh`
 
 - Git: <https://git-scm.com/doc>
 - ripgrep (`rg`): <https://github.com/BurntSushi/ripgrep>
@@ -29,8 +30,8 @@ Source: `scripts/modules/20-deps-core-packages.sh`, `scripts/modules/32-tools-ex
 - tree: <http://mama.indstate.edu/users/ice/tree/>
 - bat: <https://github.com/sharkdp/bat>
 - shellcheck: <https://www.shellcheck.net/>
-- Node.js: <https://nodejs.org/en/docs>
-- npm: <https://docs.npmjs.com/>
+- Node.js (installed via nvm): <https://nodejs.org/en/docs>
+- npm (bundled with nvm-managed Node.js): <https://docs.npmjs.com/>
 - wl-clipboard: <https://github.com/bugaevc/wl-clipboard>
 - xclip: <https://github.com/astrand/xclip>
 
