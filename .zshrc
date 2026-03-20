@@ -41,6 +41,18 @@ export VISUAL="nvim"
 [[ -d "$HOME/.cargo/bin" ]] && path+=("$HOME/.cargo/bin")
 [[ -d "$HOME/.npm-global/bin" ]] && path+=("$HOME/.npm-global/bin")
 [[ -d "/opt/nvim-linux-x86_64/bin" ]] && path+=("/opt/nvim-linux-x86_64/bin")
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Fuzzy finder
+source /usr/share/doc/fzf/examples/completion.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+# FZF shortcuts
+export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git'
 
 # Directory shortcuts.
 alias hh='cd ~'
@@ -48,6 +60,3 @@ alias dt='cd ~/Desktop'
 alias pr='cd ~/Projects'
 alias dotfiles='cd "$DOTFILES_DIR"'
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
