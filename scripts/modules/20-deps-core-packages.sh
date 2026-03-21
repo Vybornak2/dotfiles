@@ -3,6 +3,7 @@
 log_info "Installing core packages"
 apt_install \
   ca-certificates \
+  chafa \
   curl \
   fd-find \
   fzf \
