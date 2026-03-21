@@ -45,4 +45,4 @@ if [[ ! -x "$PY_HOST_BIN" ]]; then
 fi
 
 "$PY_HOST_BIN" -m pip install --upgrade pip
-"$PY_HOST_BIN" -m pip install pynvim
+"$PY_HOST_BIN" -m pip install pynvim pylatexenc
