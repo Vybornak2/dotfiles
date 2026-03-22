@@ -228,12 +228,13 @@ return {
 			},
 		},
 	},
-
 	{ -- Autocompletion
 		"saghen/blink.cmp",
 		event = "VimEnter",
 		version = "1.*",
 		dependencies = {
+			"giuxtaposition/blink-cmp-copilot",
+			"Kaiser-Yang/blink-cmp-avante",
 			-- Snippet Engine
 			{
 				"L3MON4D3/LuaSnip",
@@ -299,24 +300,32 @@ return {
 			},
 
 			completion = {
+				ghost_text = {
+					enabled = true,
+				},
 				-- By default, you may press `<c-space>` to show the documentation.
 				-- Optionally, set `auto_show = true` to show the documentation after a delay.
 				documentation = { auto_show = false, auto_show_delay_ms = 500 },
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets" },
+				default = { "lsp", "path", "snippets", "avante", "copilot" },
+				providers = {
+					avante = {
+						module = "blink-cmp-avante",
+						name = "Avante",
+					},
+					copilot = {
+						name = "copilot",
+						module = "blink-cmp-copilot",
+						score_offset = 100,
+						async = true,
+					},
+				},
 			},
 
 			snippets = { preset = "luasnip" },
 
-			-- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-			-- which automatically downloads a prebuilt binary when enabled.
-			--
-			-- By default, we use the Lua implementation instead, but you may enable
-			-- the rust implementation via `'prefer_rust_with_warning'`
-			--
-			-- See :h blink-cmp-config-fuzzy for more information
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 
 			-- Shows a signature help window while you type arguments for a function
