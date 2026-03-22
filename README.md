@@ -7,6 +7,7 @@ This repository provides:
 - Zsh setup (Oh My Zsh, Powerlevel10k, plugins)
 - Neovim setup (Kickstart-based config, plugin bootstrap, Mason tools)
 - Visual Studio Code setup (settings link + extension install)
+- Kitty terminal setup (config link, default terminal, Super+T shortcut)
 - Core CLI/language tooling (Rust, uv, Python tools, C/C++ toolchain)
 - Font setup (JetBrains Mono + Nerd Font)
 
@@ -14,6 +15,7 @@ This repository provides:
 
 - `.zshrc`: shell config
 - `nvim/`: Neovim config
+- `kitty/`: Kitty terminal config
 - `settings.json`: VS Code user settings to be linked
 - `scripts/install.sh`: main installer entrypoint
 - `scripts/modules/`: modular install stages
@@ -68,8 +70,9 @@ Execution order is defined in `scripts/install.sh`:
 14. `40-config-links.sh`
 15. `41-config-nvim-bootstrap.sh`
 16. `42-config-git.sh`
-17. `50-verify.sh`
-18. `51-cleanup.sh`
+17. `43-config-terminal.sh`
+18. `50-verify.sh`
+19. `51-cleanup.sh`
 
 ## Documentation
 

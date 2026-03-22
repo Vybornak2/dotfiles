@@ -27,6 +27,7 @@ Source: `scripts/modules/20-deps-core-packages.sh`, `scripts/modules/26-deps-nod
 - fd (`fd-find` package on Debian/Ubuntu): <https://github.com/sharkdp/fd>
 - fzf: <https://github.com/junegunn/fzf>
 - jq: <https://jqlang.github.io/jq/>
+- kitty: <https://sw.kovidgoyal.net/kitty/>
 - tree: <http://mama.indstate.edu/users/ice/tree/>
 - bat: <https://github.com/sharkdp/bat>
 - shellcheck: <https://www.shellcheck.net/>

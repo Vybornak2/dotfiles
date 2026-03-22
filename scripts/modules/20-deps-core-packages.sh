@@ -10,6 +10,7 @@ apt_install \
   git \
   gpg \
   jq \
+  kitty \
   make \
   ripgrep \
   software-properties-common \
