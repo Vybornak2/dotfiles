@@ -1,14 +1,5 @@
 return { -- Fuzzy Finder (files, lsp, etc)
 	"nvim-telescope/telescope.nvim",
-	-- By default, Telescope is included and acts as your picker for everything.
-
-	-- If you would like to switch to a different picker (like snacks, or fzf-lua)
-	-- you can disable the Telescope plugin by setting enabled to false and enable
-	-- your replacement picker by requiring it explicitly (e.g. 'custom.plugins.snacks')
-
-	-- Note: If you customize your config for yourself,
-	-- it’s best to remove the Telescope plugin config entirely
-	-- instead of just disabling it here, to keep your config clean.
 	enabled = true,
 	event = "VimEnter",
 	dependencies = {
@@ -32,27 +23,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	config = function()
-		-- Telescope is a fuzzy finder that comes with a lot of different things that
-		-- it can fuzzy find! It's more than just a "file finder", it can search
-		-- many different aspects of Neovim, your workspace, LSP, and more!
-		--
-		-- The easiest way to use Telescope, is to start by doing something like:
-		--  :Telescope help_tags
-		--
-		-- After running this command, a window will open up and you're able to
-		-- type in the prompt window. You'll see a list of `help_tags` options and
-		-- a corresponding preview of the help.
-		--
-		-- Two important keymaps to use while in Telescope are:
-		--  - Insert mode: <c-/>
-		--  - Normal mode: ?
-		--
-		-- This opens a window that shows you all of the keymaps for the current
-		-- Telescope picker. This is really useful to discover what Telescope can
-		-- do as well as how to actually do it!
-
-		-- [[ Configure Telescope ]]
-		-- See `:help telescope` and `:help telescope.setup()`
 		require("telescope").setup({
 			-- You can put your default mappings / updates / etc. in here
 			--  All the info you're looking for is in `:help telescope.setup()`
