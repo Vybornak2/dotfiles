@@ -4,17 +4,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
-	keys = {
-		-- Chat
-		{ "<leader>aa", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "AI Actions" },
-		{ "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "AI Chat" },
-
-		-- Edit / Inline
-		{ "<leader>ae", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "AI Inline Edit" },
-
-		-- Quick Shortcuts (Visual Mode)
-		{ "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add Selection to AI Chat" },
-	},
 	config = function()
 		require("codecompanion").setup({
 			-- [[ 1. Enable the Settings Header to see the current model ]]
