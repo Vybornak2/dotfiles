@@ -84,11 +84,9 @@ return {
 		-- Enable language servers (auto-installed). See :help lsp-config for customization.
 		---@type table<string, vim.lsp.Config>
 		local servers = {
-			-- clangd = {},
-			-- gopls = {},
-			pyright = {},
+			basedpyright = {},
+			ruff = {},
 			rust_analyzer = {},
-			-- ts_ls = {},
 			stylua = {}, -- Used to format Lua code
 			-- Special Lua Config, as recommended by neovim help docs
 			lua_ls = {
