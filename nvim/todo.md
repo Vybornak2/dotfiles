@@ -1,38 +1,35 @@
 # TODOs
 
-## Plugins
+## Editor
 
-### Avante, Copilot
+### CodeCompanion, Copilot
 
-- enable completions 
-    - blink_cmp
-
-- add slash commands / triggers
-
-### Git
-
+- add custom commands
 - add neogit or some git plugin
+- add custom terminal commands - running terminal, seding commands to it (neovim vs normal terminal)
+- [Neovim terminal](https://www.youtube.com/watch?v=ooTcnx066Do)
+- brackets, quotes completion
+- path navigation (hiding files, smart navigation in project)
 
-### Other
+## UI
 
-- check harpoon and other plugins for better navigation and project management
-- check additional suggested plugins
+- enable markdown in CodeCompanion
+- enable markdown in docstrings docs preview
+- check mkdocs flavored makrdown integration options
 
 ## Config
 
 - Extract the config.lua into separate files for better organization
 
-## Python toolchain integration
-
-- check usability of standard tools - mypy, flake8, ruff, ty, ...
-
 ## Other
 
-- rewatch the kickstart video
+- check additional plugins
+- review confing, plugins
+- review scripts installation
+
+## Learn
+
+- `:help lua-guide`
 - check one additional source for learning lua and neovim configuration
-- read `:help lua-guide`
-- learn about diff options and how to use them effectively
-- try to resolve icon rendering issues 
-- run, fix `:checkhealth` and resolve any issues
-- extend config installation scripts
-- check command-line execution
+- `diff` in neovim
+
