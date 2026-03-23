@@ -4,7 +4,6 @@ return { -- Autocompletion
 	version = "1.*",
 	dependencies = {
 		"giuxtaposition/blink-cmp-copilot",
-		"Kaiser-Yang/blink-cmp-avante",
 		-- Snippet Engine
 		{
 			"L3MON4D3/LuaSnip",
@@ -79,17 +78,18 @@ return { -- Autocompletion
 		},
 
 		sources = {
-			default = { "lsp", "path", "snippets", "avante", "copilot" },
+			default = { "lsp", "path", "snippets", "copilot", "codecompanion" },
 			providers = {
-				avante = {
-					module = "blink-cmp-avante",
-					name = "Avante",
-				},
 				copilot = {
 					name = "copilot",
 					module = "blink-cmp-copilot",
 					score_offset = 100,
 					async = true,
+				},
+				codecompanion = {
+					name = "CodeCompanion",
+					module = "codecompanion.providers.completion.blink",
+					enabled = true,
 				},
 			},
 		},
