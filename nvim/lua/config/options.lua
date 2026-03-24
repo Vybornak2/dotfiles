@@ -29,15 +29,4 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 vim.o.foldenable = false
 
--- Sync clipboard between OS and Neovim (scheduled to avoid increasing startup-time)
-vim.schedule(function()
-	vim.o.clipboard = "unnamedplus"
-end)
-
--- Wayland clipboard provider
-vim.g.clipboard = {
-	name = "wl-clipboard",
-	copy = { ["+"] = "wl-copy", ["*"] = "wl-copy" },
-	paste = { ["+"] = "wl-paste", ["*"] = "wl-paste" },
-	cache_enabled = 1,
-}
+vim.o.clipboard = "unnamedplus"
