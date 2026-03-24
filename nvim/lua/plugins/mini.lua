@@ -4,7 +4,12 @@ return {
 		require("mini.ai").setup({ n_lines = 500 }) -- `:help mini.ai` for more info
 		require("mini.surround").setup() -- `:help mini.surround` for more info
 
-		require("mini.files").setup({})
+		require("mini.files").setup({
+			mappings = { synchronize = "<C-s>" },
+			options = {
+				use_as_default_explorer = true,
+			},
+		})
 
 		local statusline = require("mini.statusline")
 		statusline.setup({ use_icons = vim.g.have_nerd_font })

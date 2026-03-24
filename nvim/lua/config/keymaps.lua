@@ -27,10 +27,35 @@ function M.setup()
 	-- [[ Diagnostics ]]
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+	-- [[ Neovim Config]]
+	vim.keymap.set("n", "<leader>nr", function()
+		for name, _ in pairs(package.loaded) do
+			if name:match("^plugins") or name:match("^config") then
+				package.loaded[name] = nil
+			end
+		end
+		dofile(vim.env.MYVIMRC)
+		vim.notify("Config Reloaded!")
+	end, { desc = "[N]eovim [R]eload" })
+
 	-- [[ Format (conform.nvim) ]]
-	vim.keymap.set("", "<leader>f", function()
+	vim.keymap.set("", "<leader><leader>", function()
 		require("conform").format({ async = true, lsp_format = "fallback" })
-	end, { desc = "[F]ormat buffer" })
+	end, { desc = "Format buffer" })
+
+	-- [[ MiniFiles ]]
+	vim.keymap.set("n", "<leader>fe", function()
+		require("mini.files").open()
+	end, { desc = "[F]iles [R]oot explore" })
+
+	vim.keymap.set("n", "<leader>fl", function()
+		local buf_path = vim.api.nvim_buf_get_name(0)
+		if buf_path ~= "" then
+			require("mini.files").open(vim.fn.fnamemodify(buf_path, ":h"))
+		else
+			require("mini.files").open()
+		end
+	end, { desc = "[F]iles [L]ocal explore" })
 
 	-- [[ Telescope ]]
 	-- See `:help telescope.builtin`
@@ -44,12 +69,17 @@ function M.setup()
 	vim.keymap.set("n", "<leader>sr", t_builtin.resume, { desc = "[S]earch [R]esume" })
 	vim.keymap.set("n", "<leader>s.", t_builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 	vim.keymap.set("n", "<leader>sc", t_builtin.commands, { desc = "[S]earch [C]ommands" })
-	vim.keymap.set("n", "<leader><leader>", t_builtin.buffers, { desc = "[ ] Find existing buffers" })
+	vim.keymap.set("n", "<leader>sb", t_builtin.buffers, { desc = "[S]earch [B]uffers" })
 
 	vim.keymap.set("n", "<leader>/", function()
 		t_builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-			winblend = 10,
+			winblend = 5,
 			previewer = false,
+			layout_config = {
+				height = 0.5,
+				width = 0.5,
+				anchor = "SE",
+			},
 		}))
 	end, { desc = "[/] Fuzzily search in current buffer" })
 
