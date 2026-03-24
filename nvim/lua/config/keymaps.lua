@@ -43,20 +43,6 @@ function M.setup()
 		require("conform").format({ async = true, lsp_format = "fallback" })
 	end, { desc = "Format buffer" })
 
-	-- [[ MiniFiles ]]
-	vim.keymap.set("n", "<leader>fe", function()
-		require("mini.files").open()
-	end, { desc = "[F]iles [R]oot explore" })
-
-	vim.keymap.set("n", "<leader>fl", function()
-		local buf_path = vim.api.nvim_buf_get_name(0)
-		if buf_path ~= "" then
-			require("mini.files").open(vim.fn.fnamemodify(buf_path, ":h"))
-		else
-			require("mini.files").open()
-		end
-	end, { desc = "[F]iles [L]ocal explore" })
-
 	-- [[ Telescope ]]
 	-- See `:help telescope.builtin`
 	vim.keymap.set("n", "<leader>sh", t_builtin.help_tags, { desc = "[S]earch [H]elp" })
@@ -126,6 +112,76 @@ function M.setup()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }))
 				end, "LSP: [T]oggle Inlay [H]ints")
 			end
+		end,
+	})
+
+	-- [[ MiniFiles ]]
+	vim.keymap.set("n", "<leader>fr", function()
+		require("mini.files").open()
+	end, { desc = "[F]iles [R]oot explore" })
+
+	vim.keymap.set("n", "<leader>fl", function()
+		local buf_path = vim.api.nvim_buf_get_name(0)
+		if buf_path ~= "" then
+			require("mini.files").open(vim.fn.fnamemodify(buf_path, ":h"))
+		else
+			require("mini.files").open()
+		end
+	end, { desc = "[F]iles [L]ocal explore" })
+
+	local show_dotfiles = true
+
+	---@diagnostic disable-next-line: unused-local
+	local filter_show = function(fs_entry)
+		return true
+	end
+
+	local filter_hide = function(fs_entry)
+		return not vim.startswith(fs_entry.name, ".")
+	end
+
+	local toggle_dotfiles = function()
+		show_dotfiles = not show_dotfiles
+		local new_filter = show_dotfiles and filter_show or filter_hide
+		MiniFiles.refresh({ content = { filter = new_filter } })
+	end
+
+	local set_cwd = function()
+		local path = (MiniFiles.get_fs_entry() or {}).path
+		if path == nil then
+			return vim.notify("Cursor is not on valid entry")
+		end
+		vim.fn.chdir(vim.fs.dirname(path))
+	end
+
+	local yank_path = function()
+		local path = (MiniFiles.get_fs_entry() or {}).path
+		if path == nil then
+			return vim.notify("Cursor is not on valid entry")
+		end
+		vim.fn.setreg(vim.v.register, path)
+	end
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "MiniFilesBufferCreate",
+		callback = function(args)
+			local buf_id = args.data.buf_id
+
+			-- Toggle dotfiles visibility with `t.`
+			vim.keymap.set("n", "t.", toggle_dotfiles, { buffer = buf_id })
+
+			-- mappings = { synchronize = "<C-s>" },
+			vim.keymap.set("n", "<C-s>", function()
+				require("mini.files").synchronize()
+			end, { desc = "Sychronize changes" })
+
+			-- Close on esc
+			vim.keymap.set("n", "<esc>", function()
+				require("mini.files").close()
+			end, { desc = "Close MiniFiles" })
+
+			vim.keymap.set("n", "g~", set_cwd, { buffer = buf_id, desc = "Set cwd" })
+			vim.keymap.set("n", "gy", yank_path, { buffer = buf_id, desc = "Yank path" })
 		end,
 	})
 end
