@@ -8,12 +8,4 @@ vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local modules = { "options", "autocmd", "lazy", "keymaps" }
-
-for _, name in ipairs(modules) do
-	local module = require("config." .. name)
-	local ok, err = pcall(module.setup)
-	if not ok then
-		vim.notify("Error running " .. name .. ".setup: " .. err, vim.log.levels.ERROR)
-	end
-end
+require("config").setup()
