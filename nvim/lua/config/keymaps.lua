@@ -1,6 +1,4 @@
--- [[ Keybindings ]]
--- All keybindings are defined here as a single source of truth.
--- Plugin requires are deferred inside callbacks to preserve lazy loading.
+-- [[ Keymaps ]]
 
 local M = {}
 
