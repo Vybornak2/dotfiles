@@ -180,6 +180,11 @@ function M.setup()
 				require("mini.files").close()
 			end, { desc = "Close MiniFiles" })
 
+			-- Open with <CR>
+			vim.keymap.set("n", "<CR>", function()
+				require("mini.files").go_in({ close_on_file = true })
+			end, { desc = "Open file" })
+
 			vim.keymap.set("n", "g~", set_cwd, { buffer = buf_id, desc = "Set cwd" })
 			vim.keymap.set("n", "gy", yank_path, { buffer = buf_id, desc = "Yank path" })
 		end,
