@@ -12,12 +12,10 @@ return {
 					show_settings = true,
 				},
 			},
-
 			strategies = {
 				chat = {
 					adapter = "copilot",
 					keymaps = {
-						-- This adds a specific keymap to swap models while chatting
 						change_model = {
 							modes = { n = "gm" }, -- 'gm' for "Go Model"
 							description = "Change the AI model",
@@ -29,18 +27,17 @@ return {
 				},
 				inline = { adapter = "copilot" },
 			},
-
-			-- [[ 2. Set your default (GPT-5.3 is the March 2026 LTS) ]]
 			adapters = {
-				copilot = function()
-					return require("codecompanion.adapters").extend("copilot", {
-						schema = {
-							model = {
-								default = "gpt-5.3-codex",
+				acp = {
+					gemini_cli = function()
+						return require("codecompanion.adapters").extend("gemini_cli", {
+							defaults = {
+								auth_method = "oauth-personal", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
 							},
-						},
-					})
-				end,
+							-- env = { GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline" },
+						})
+					end,
+				},
 			},
 		})
 	end,
