@@ -52,20 +52,19 @@ function M.setup()
 		callback = function(args)
 			local buf_id = args.data.buf_id
 
-			-- Toggle dotfiles visibility with `t.`
-			vim.keymap.set("n", "t.", toggle_dotfiles, { buffer = buf_id })
+			vim.keymap.set("n", "t.", toggle_dotfiles, { buffer = buf_id, desc = "Toggle dotfiles" })
 
 			vim.keymap.set("n", "<C-s>", function()
 				require("mini.files").synchronize()
-			end, { desc = "Sychronize changes" })
+			end, { buffer = buf_id, desc = "Sychronize changes" })
 
 			vim.keymap.set("n", "<esc>", function()
 				require("mini.files").close()
-			end, { desc = "Close MiniFiles" })
+			end, { buffer = buf_id, desc = "Close MiniFiles" })
 
 			vim.keymap.set("n", "<CR>", function()
 				require("mini.files").go_in({ close_on_file = true })
-			end, { desc = "Open file" })
+			end, { buffer = buf_id, desc = "Open file" })
 
 			vim.keymap.set("n", "g~", set_cwd, { buffer = buf_id, desc = "Set cwd" })
 			vim.keymap.set("n", "gy", yank_path, { buffer = buf_id, desc = "Yank path" })
