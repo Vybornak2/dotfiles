@@ -1,3 +1,4 @@
+--[[ LSP Keymaps ]]
 local M = {}
 
 function M.setup()
@@ -28,7 +29,7 @@ function M.setup()
 			if client and client:supports_method("textDocument/inlayHint", buf) then
 				map("<leader>th", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }))
-				end, "LSP: [T]oggle Inlay [H]ints")
+				end, "Inlay [H]ints")
 			end
 		end,
 	})

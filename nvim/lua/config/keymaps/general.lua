@@ -1,3 +1,4 @@
+--[[ General Keymmaps ]]
 local M = {}
 
 function M.setup()
@@ -34,6 +35,19 @@ function M.setup()
 		end
 		dofile(vim.env.MYVIMRC)
 		vim.notify("Config Reloaded!")
+	end, { desc = "[R]eload" })
+
+	vim.keymap.set("n", "<leader>nl", function()
+		vim.cmd("Lazy")
+	end, { desc = "[L]azy" })
+
+	vim.keymap.set("n", "<leader>nm", function()
+		vim.cmd("Mason")
+	end, { desc = "[M]ason" })
+
+	--[[ Utils ]]
+	vim.keymap.set("n", "<leader>ur", function()
+		vim.cmd("edit!")
 	end, { desc = "[R]eload" })
 
 	-- Format (conform.nvim)
