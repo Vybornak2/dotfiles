@@ -59,4 +59,5 @@ alias hh='cd ~'
 alias dt='cd ~/Desktop'
 alias pr='cd ~/Projects'
 alias dotfiles='cd "$DOTFILES_DIR"'
+alias ipy='uv tool run ipython'
 
