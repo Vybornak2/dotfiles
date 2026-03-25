@@ -4,6 +4,7 @@ local modules = {
 	"config.keymaps.codecompanion",
 	"config.keymaps.lsp",
 	"config.keymaps.minifiles",
+	"config.keymaps.iron",
 }
 
 local M = {}
