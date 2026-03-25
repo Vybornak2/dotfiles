@@ -54,6 +54,10 @@ export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix --hidden --follow
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git'
 
+# Autocompletion
+autoload -U compinit
+compinit -i
+
 # Directory shortcuts.
 alias hh='cd ~'
 alias dt='cd ~/Desktop'
