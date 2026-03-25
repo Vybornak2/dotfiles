@@ -36,7 +36,7 @@ function M.setup()
 
 	vim.keymap.set("n", "<leader>fr", function()
 		require("mini.files").open()
-	end, { desc = "[F]iles [R]oot explore" })
+	end, { desc = "[R]oot explore" })
 
 	vim.keymap.set("n", "<leader>fl", function()
 		local buf_path = vim.api.nvim_buf_get_name(0)
@@ -45,7 +45,7 @@ function M.setup()
 		else
 			require("mini.files").open()
 		end
-	end, { desc = "[F]iles [L]ocal explore" })
+	end, { desc = "[L]ocal explore" })
 
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "MiniFilesBufferCreate",

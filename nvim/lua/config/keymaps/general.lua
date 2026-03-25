@@ -18,12 +18,12 @@ function M.setup()
 	vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 	-- Diagnostics
-	vim.keymap.set("n", "<leader>td", vim.diagnostic.setloclist, { desc = "[D]iagnostic list" })
+	vim.keymap.set("n", "<leader>td", vim.diagnostic.setloclist, { desc = "[D]iagnostics" })
 
 	-- Git / Neogit / GitSigns
-	vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "[G]it [G]ui" })
+	vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "[G]ui" })
 	-- { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-	vim.keymap.set("n", "<leader>ts", ":Gitsigns stage_hunk<CR>", { desc = "[T]oggle git [S]igns" })
+	vim.keymap.set("n", "<leader>ts", ":Gitsigns stage_hunk<CR>", { desc = "Git [S]igns" })
 
 	-- Neovim config reload
 	vim.keymap.set("n", "<leader>nr", function()
@@ -34,7 +34,7 @@ function M.setup()
 		end
 		dofile(vim.env.MYVIMRC)
 		vim.notify("Config Reloaded!")
-	end, { desc = "[N]eovim [R]eload" })
+	end, { desc = "[R]eload" })
 
 	-- Format (conform.nvim)
 	vim.keymap.set("", "<leader><leader>", function()
