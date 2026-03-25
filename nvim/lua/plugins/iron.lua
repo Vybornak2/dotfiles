@@ -1,7 +1,6 @@
 return {
 	"Vigemus/iron.nvim",
 	name = "iron",
-	build = "helptags ALL",
 	config = function()
 		local view = require("iron.view")
 		local common = require("iron.fts.common")

@@ -16,6 +16,7 @@ return {
 			{ "<leader>f", group = "[F]ile", icon = "󰈙", mode = { "n" } },
 			{ "<leader>g", group = "[G]it", icon = "", mode = { "n" } },
 			{ "<leader>n", group = "[N]eoVim", icon = "", mode = { "n", "v" } },
+			{ "<leader>r", group = "[R]EPL", icon = "", mode = { "n", "v" } },
 			{ "<leader>s", group = "[S]earch", icon = "", mode = { "n", "v" } },
 			{ "<leader>t", group = "[T]oggle", icon = "", mode = { "n" } },
 
