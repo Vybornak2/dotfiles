@@ -12,9 +12,15 @@ return {
 					show_settings = true,
 				},
 			},
+			-- opts = {
+			-- 	log_level = "DEBUG", -- TRACE|DEBUG|ERROR|INFO
+			-- },
 			strategies = {
 				chat = {
-					adapter = "copilot",
+					adapter = {
+						name = "copilot",
+						model = "gpt-5.3-codex",
+					},
 					keymaps = {
 						change_model = {
 							modes = { n = "gm" }, -- 'gm' for "Go Model"
@@ -25,7 +31,12 @@ return {
 						},
 					},
 				},
-				inline = { adapter = "copilot" },
+				inline = {
+					adapter = {
+						name = "copilot",
+						model = "gpt-4.1",
+					},
+				},
 			},
 			adapters = {
 				acp = {
