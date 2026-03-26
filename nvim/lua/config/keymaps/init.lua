@@ -6,7 +6,7 @@ local modules = {
 	"config.keymaps.minifiles",
 	"config.keymaps.iron",
 	"config.keymaps.copilot",
-	"config.keymaps.markdown-preview",
+	-- "config.keymaps.markdown-preview",
 }
 
 local M = {}

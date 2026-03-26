@@ -1,3 +1,6 @@
+--[[Keymaps Markdown-Preview]]
+-- DISABLED by default
+
 local M = {}
 
 local state = { active = false }
