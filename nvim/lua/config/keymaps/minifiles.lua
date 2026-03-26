@@ -34,6 +34,20 @@ function M.setup()
 		vim.fn.setreg(vim.v.register, path)
 	end
 
+	local xdg_open = function()
+		local entry = MiniFiles.get_fs_entry()
+		if entry == nil then
+			return vim.notify("Cursor is not on valid entry")
+		end
+
+		local path = entry.path
+		if vim.fn.isdirectory(path) == 1 then
+			return vim.notify("Cannot open directory with xdg-open")
+		end
+
+		vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+	end
+
 	vim.keymap.set("n", "<leader>fr", function()
 		require("mini.files").open()
 	end, { desc = "[R]oot explore" })
@@ -68,6 +82,8 @@ function M.setup()
 
 			vim.keymap.set("n", "g~", set_cwd, { buffer = buf_id, desc = "Set cwd" })
 			vim.keymap.set("n", "gy", yank_path, { buffer = buf_id, desc = "Yank path" })
+
+			vim.keymap.set("n", "gx", xdg_open, { buffer = buf_id, desc = "Open file or URL" })
 		end,
 	})
 end
