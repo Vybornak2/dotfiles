@@ -35,57 +35,40 @@ return { -- Autocompletion
 	---@type blink.cmp.Config
 	opts = {
 		keymap = {
-			-- 'default' (recommended) for mappings similar to built-in completions
-			--   <c-y> to accept ([y]es) the completion.
-			--    This will auto-import if your LSP supports it.
-			--    This will expand snippets if the LSP sent a snippet.
-			-- 'super-tab' for tab to accept
-			-- 'enter' for enter to accept
-			-- 'none' for no mappings
-			--
-			-- For an understanding of why the 'default' preset is recommended,
-			-- you will need to read `:help ins-completion`
-			--
-			-- No, but seriously. Please read `:help ins-completion`, it is really good!
-			--
-			-- All presets have the following mappings:
-			-- <tab>/<s-tab>: move to right/left of your snippet expansion
-			-- <c-space>: Open menu or open docs if already open
-			-- <c-n>/<c-p> or <up>/<down>: Select next/previous item
-			-- <c-e>: Hide menu
-			-- <c-k>: Toggle signature help
-			--
-			-- See :h blink-cmp-config-keymap for defining your own keymap
-			preset = "default",
-
+			-- `:help ins-completion`
+			-- :h blink-cmp-config-keymap
 			-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-			--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+			-- https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+			preset = "default",
 		},
 
 		appearance = {
-			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-			-- Adjusts spacing to ensure icons are aligned
 			nerd_font_variant = "mono",
 		},
 
 		completion = {
+			trigger = {
+				prefetch_on_insert = true,
+			},
 			ghost_text = {
 				enabled = true,
 			},
-			-- By default, you may press `<c-space>` to show the documentation.
-			-- Optionally, set `auto_show = true` to show the documentation after a delay.
 			documentation = { auto_show = false, auto_show_delay_ms = 500 },
 		},
 
 		sources = {
-			default = { "lsp", "path", "snippets", "copilot", "codecompanion" },
+			default = { "lsp", "path", "snippets", "codecompanion" },
+			-- default = { "lsp", "path", "snippets", "copilot", "codecompanion" },
 			providers = {
-				copilot = {
-					name = "copilot",
-					module = "blink-cmp-copilot",
-					score_offset = 100,
-					async = true,
-				},
+				-- Copilot suggestions are handled via `copilot.lua`
+				-- enable correct `default` !!! if enabled
+				-- copilot = {
+				-- 	name = "copilot",
+				-- 	module = "blink-cmp-copilot",
+				-- 	min_keyword_length = 1,
+				-- 	score_offset = 0,
+				-- 	async = true,
+				-- },
 				codecompanion = {
 					name = "CodeCompanion",
 					module = "codecompanion.providers.completion.blink",

@@ -23,7 +23,7 @@ return {
 					},
 					keymaps = {
 						change_model = {
-							modes = { n = "gm" }, -- 'gm' for "Go Model"
+							modes = { n = "<leader>am" },
 							description = "Change the AI model",
 							callback = function(chat)
 								require("codecompanion.interactions.chat.keymaps.change_adapter").select_model(chat)
@@ -34,7 +34,8 @@ return {
 				inline = {
 					adapter = {
 						name = "copilot",
-						model = "gpt-4.1",
+						-- model = "gpt-4.1",
+						model = "gpt-5.3-codex",
 					},
 				},
 			},

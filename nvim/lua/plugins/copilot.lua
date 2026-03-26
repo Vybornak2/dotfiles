@@ -7,9 +7,16 @@ return {
 			-- Model is handled via `CodeCompanion`
 			-- model = "gpt-4.1",
 			suggestion = {
-				enabled = false,
-				auto_trigger = false,
+				enabled = true,
+				auto_trigger = true,
+				hide_during_completion = true,
 				debounce = 15,
+				trigger_on_accept = true,
+				keymap = {
+					accept_word = false,
+					accept_line = false,
+					toggle_auto_trigger = false,
+				},
 			},
 			panel = { enabled = false },
 			filetypes = {
