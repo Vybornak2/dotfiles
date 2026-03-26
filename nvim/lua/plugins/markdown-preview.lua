@@ -1,7 +1,7 @@
 return {
 	"selimacerbas/markdown-preview.nvim",
 	dependencies = { "selimacerbas/live-server.nvim" },
-	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+	-- cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 	config = function()
 		require("markdown_preview").setup({
 			-- all optional; sane defaults shown
