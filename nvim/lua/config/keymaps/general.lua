@@ -1,4 +1,5 @@
 --[[ General Keymmaps ]]
+
 local M = {}
 
 function M.setup()
@@ -26,7 +27,7 @@ function M.setup()
 	-- { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
 	vim.keymap.set("n", "<leader>ts", ":Gitsigns stage_hunk<CR>", { desc = "Git [S]igns" })
 
-	-- Neovim config reload
+	--[[Neovim]]
 	vim.keymap.set("n", "<leader>nr", function()
 		for name, _ in pairs(package.loaded) do
 			if name:match("^plugins") or name:match("^config") then

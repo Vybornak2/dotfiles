@@ -17,7 +17,6 @@ function M.setup()
 	vim.o.mouse = "a"
 	vim.o.showmode = false
 	vim.o.breakindent = true
-	vim.o.undofile = true
 	vim.o.ignorecase = true
 	vim.o.smartcase = true
 	vim.o.signcolumn = "yes"
@@ -34,6 +33,9 @@ function M.setup()
 	vim.o.foldenable = false
 
 	vim.o.clipboard = "unnamedplus"
+
+	vim.o.undofile = true
+	vim.opt.swapfile = false
 end
 
 return M
