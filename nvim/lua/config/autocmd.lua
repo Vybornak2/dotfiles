@@ -22,7 +22,20 @@ function M.setup()
 			vim.hl.on_yank()
 		end,
 	})
+
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = {
+			"NeogitStatus",
+			"NeogitPopup",
+			"NeogitCommitMessage",
+			"codecompanion",
+			"CodeCompanion",
+		},
+		callback = function(args)
+			vim.bo[args.buf].buflisted = false
+			vim.bo[args.buf].bufhidden = "wipe"
+		end,
+	})
 end
 
 return M
-

@@ -20,6 +20,7 @@ return {
 			{ "<leader>s", group = "[S]earch", icon = "", mode = { "n", "v" } },
 			{ "<leader>t", group = "[T]oggle", icon = "", mode = { "n" } },
 			{ "<leader>u", group = "[U]tils", icon = "", mode = { "n" } },
+			{ "<leader>us", group = "[S]ession", icon = "󰆓", mode = { "n" } },
 
 			{ "gr", group = "LSP Actions", icon = "", mode = { "n" } },
 		},
