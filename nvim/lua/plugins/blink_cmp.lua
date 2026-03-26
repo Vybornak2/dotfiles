@@ -3,8 +3,6 @@ return { -- Autocompletion
 	event = "VimEnter",
 	version = "1.*",
 	dependencies = {
-		"giuxtaposition/blink-cmp-copilot",
-		-- Snippet Engine
 		{
 			"L3MON4D3/LuaSnip",
 			version = "2.*",
@@ -21,12 +19,12 @@ return { -- Autocompletion
 				-- `friendly-snippets` contains a variety of premade snippets.
 				--    See the README about individual language/framework/plugin snippets:
 				--    https://github.com/rafamadriz/friendly-snippets
-				-- {
-				--   'rafamadriz/friendly-snippets',
-				--   config = function()
-				--     require('luasnip.loaders.from_vscode').lazy_load()
-				--   end,
-				-- },
+				{
+					"rafamadriz/friendly-snippets",
+					config = function()
+						require("luasnip.loaders.from_vscode").lazy_load()
+					end,
+				},
 			},
 			opts = {},
 		},
@@ -78,7 +76,6 @@ return { -- Autocompletion
 		},
 
 		snippets = { preset = "luasnip" },
-
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 
 		-- Shows a signature help window while you type arguments for a function
