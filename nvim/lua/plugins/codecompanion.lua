@@ -6,7 +6,6 @@ return {
 	},
 	config = function()
 		require("codecompanion").setup({
-			-- [[ 1. Enable the Settings Header to see the current model ]]
 			display = {
 				chat = {
 					show_settings = true,
@@ -15,7 +14,7 @@ return {
 			-- opts = {
 			-- 	log_level = "DEBUG", -- TRACE|DEBUG|ERROR|INFO
 			-- },
-			strategies = {
+			interactions = {
 				chat = {
 					adapter = {
 						name = "copilot",
@@ -35,8 +34,22 @@ return {
 				inline = {
 					adapter = {
 						name = "copilot",
-						-- model = "gpt-4.1",
-						model = "gpt-5.3-codex",
+						--model = "gpt-5.3-codex",
+						model = "gpt-4.1",
+					},
+				},
+				cli = {
+					agent = "copilot",
+					-- opts = {
+					-- 	auto_insert = true,
+					-- },
+					agents = {
+						copilot = {
+							cmd = "copilot",
+							args = {},
+							description = "Copilot CLI",
+							provider = "terminal",
+						},
 					},
 				},
 			},

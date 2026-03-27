@@ -38,6 +38,20 @@ function M.setup()
 			vim.bo[args.buf].bufhidden = "wipe"
 		end,
 	})
+
+	--Delete empty buffer on BufLeave
+	vim.api.nvim_create_autocmd("BufLeave", {
+		callback = function(args)
+			local buf = args.buf
+			local bufname = vim.api.nvim_buf_get_name(buf)
+			local content = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+			local text = table.concat(content, "\n"):gsub("^%s*(.-)%s*$", "%1") -- strip whitespace
+
+			if bufname == "" and text == "" then
+				vim.api.nvim_buf_delete(buf, { force = true })
+			end
+		end,
+	})
 end
 
 return M

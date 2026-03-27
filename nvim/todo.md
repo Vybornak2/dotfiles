@@ -11,25 +11,27 @@
 - add custom snippets (friendlysnippets.nvim)
 - autodocstring?
 - check LuaSnip congiguration and usage
+- check loging of AI payload (done via autocmd)
 
 ## Diff
 
 - diffview congig
 - diff git changes integration
 
-## Plugins
+## Debugger
 
-- check additional plugins
+- nvim-dap 
 
-## Other
+## Review
 
-- add custom terminal commands - running terminal, setting commands to it (neovim vs normal terminal)
-- [Neovim terminal](https://www.youtube.com/watch?v=ooTcnx066Do)
-- review confing, plugins
-- review scripts installation
+- config
+- plugins
+- deps installation
+- checkhealth
 
 ## Learn
 
+- [Neovim terminal](https://www.youtube.com/watch?v=ooTcnx066Do)
 - `:help lua-guide`to
 - check one additional source for learning lua and neovim configuration
 - `diff` git changes integration
@@ -38,4 +40,8 @@
 
 - MKdocs flavored markdown integration options
 - Markdown latex rendering options
+- `:term` commands integration options
+- `python` tools / workflow integration options
+- `rust` tools / workflow integration options
+- undodo-tree or similar plugin
 
