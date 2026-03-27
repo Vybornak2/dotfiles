@@ -15,11 +15,11 @@ function M.setup()
 	local toggle_dotfiles = function()
 		show_dotfiles = not show_dotfiles
 		local new_filter = show_dotfiles and filter_show or filter_hide
-		MiniFiles.refresh({ content = { filter = new_filter } })
+		require("mini.files").refresh({ content = { filter = new_filter } })
 	end
 
 	local set_cwd = function()
-		local path = (MiniFiles.get_fs_entry() or {}).path
+		local path = (require("mini.files").get_fs_entry() or {}).path
 		if path == nil then
 			return vim.notify("Cursor is not on valid entry")
 		end
@@ -27,7 +27,7 @@ function M.setup()
 	end
 
 	local yank_path = function()
-		local path = (MiniFiles.get_fs_entry() or {}).path
+		local path = (require("mini.files").get_fs_entry() or {}).path
 		if path == nil then
 			return vim.notify("Cursor is not on valid entry")
 		end
@@ -35,7 +35,7 @@ function M.setup()
 	end
 
 	local xdg_open = function()
-		local entry = MiniFiles.get_fs_entry()
+		local entry = require("mini.files").get_fs_entry()
 		if entry == nil then
 			return vim.notify("Cursor is not on valid entry")
 		end

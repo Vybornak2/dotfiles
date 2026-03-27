@@ -23,6 +23,7 @@ function M.setup()
 		end,
 	})
 
+	-- Buffers to be removed from sessions
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = {
 			"NeogitStatus",
@@ -30,6 +31,7 @@ function M.setup()
 			"NeogitCommitMessage",
 			"codecompanion",
 			"CodeCompanion",
+			"minifiles",
 		},
 		callback = function(args)
 			vim.bo[args.buf].buflisted = false

@@ -19,7 +19,8 @@ return {
 				chat = {
 					adapter = {
 						name = "copilot",
-						model = "gpt-5.3-codex",
+						-- model = "gpt-5.3-codex",
+						model = "gpt-4.1",
 					},
 					keymaps = {
 						change_model = {

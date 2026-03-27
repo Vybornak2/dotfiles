@@ -17,11 +17,6 @@
 - diffview congig
 - diff git changes integration
 
-## UI
-
-- check mkdocs flavored makrdown integration options ?
-- latex rendering in markdown options (specially for mkdocs flavored markdown)
-
 ## Plugins
 
 - check additional plugins
@@ -30,13 +25,17 @@
 
 - add custom terminal commands - running terminal, setting commands to it (neovim vs normal terminal)
 - [Neovim terminal](https://www.youtube.com/watch?v=ooTcnx066Do)
-- brackets, quotes completion
 - review confing, plugins
 - review scripts installation
 
 ## Learn
 
-- `:help lua-guide`
+- `:help lua-guide`to
 - check one additional source for learning lua and neovim configuration
 - `diff` git changes integration
+
+## Optional
+
+- MKdocs flavored markdown integration options
+- Markdown latex rendering options
 
