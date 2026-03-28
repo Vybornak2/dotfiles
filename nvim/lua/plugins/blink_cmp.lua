@@ -55,7 +55,7 @@ return { -- Autocompletion
 		},
 
 		sources = {
-			default = { "lsp", "path", "snippets", "codecompanion" },
+			default = { "lsp", "path", "snippets" },
 			-- default = { "lsp", "path", "snippets", "copilot", "codecompanion" },
 			providers = {
 				-- Copilot suggestions are handled via `copilot.lua`
@@ -67,11 +67,12 @@ return { -- Autocompletion
 				-- 	score_offset = 0,
 				-- 	async = true,
 				-- },
-				codecompanion = {
-					name = "CodeCompanion",
-					module = "codecompanion.providers.completion.blink",
-					enabled = true,
-				},
+				--
+				-- codecompanion = {
+				-- 	name = "CodeCompanion",
+				-- 	module = "codecompanion.providers.completion.blink",
+				-- 	enabled = true,
+				-- },
 			},
 		},
 
