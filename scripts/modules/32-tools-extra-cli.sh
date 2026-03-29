@@ -37,7 +37,7 @@ if command -v npm >/dev/null 2>&1; then
   npm install -g @google/gemini-cli || true
 
   log_info "Installing GitHub Copilot CLI via npm"
-  npm install -g @githubnext/github-copilot-cli || true
+  npm install -g @github/copilot || true
 else
   log_warn "npm not found; skipping Gemini CLI and GitHub Copilot CLI (run 26-deps-node.sh first)"
 fi
