@@ -22,12 +22,7 @@ function M.setup()
 	-- Diagnostics
 	vim.keymap.set("n", "<leader>td", vim.diagnostic.setloclist, { desc = "[D]iagnostics" })
 
-	-- Git / Neogit / GitSigns
-	vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "[G]ui" })
-	-- { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
-	vim.keymap.set("n", "<leader>ts", ":Gitsigns stage_hunk<CR>", { desc = "Git [S]igns" })
-
-	--[[Neovim]]
+	--[[ Neovim ]]
 	vim.keymap.set("n", "<leader>nr", function()
 		for name, _ in pairs(package.loaded) do
 			if name:match("^plugins") or name:match("^config") then

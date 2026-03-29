@@ -7,6 +7,7 @@ local modules = {
 	"config.keymaps.iron",
 	"config.keymaps.copilot",
 	"config.keymaps.persistence",
+	"config.keymaps.git",
 	-- "config.keymaps.markdown-preview",
 }
 

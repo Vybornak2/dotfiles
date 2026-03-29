@@ -22,6 +22,10 @@ function M.setup()
 		return require("codecompanion").cli({ prompt = true })
 	end, { desc = "[P]rompt" })
 
+	vim.keymap.set({ "n", "v" }, "<LocalLeader>aco", function()
+		vim.cmd("CodeCompanionCLI")
+	end, { desc = "[O]pen" })
+
 	vim.keymap.set({ "n", "v" }, "<LocalLeader>aci", function()
 		return require("codecompanion").cli("#{this}", { focus = false })
 	end, { desc = "[I]nsert" })

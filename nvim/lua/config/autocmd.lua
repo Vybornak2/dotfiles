@@ -23,21 +23,35 @@ function M.setup()
 		end,
 	})
 
-	--Delete empty buffer on BufLeave
-	vim.api.nvim_create_autocmd("BufLeave", {
+	-- Buffers to be removed from sessions
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = {
+			"NeogitStatus",
+			"NeogitPopup",
+			"NeogitCommitMessage",
+			"codecompanion",
+			"CodeCompanion",
+			"minifiles",
+		},
 		callback = function(args)
-			local bufnr = args.buf
-			if
-				vim.bo[bufnr].modifiable == true
-				and vim.bo[bufnr].buftype == ""
-				and vim.bo[bufnr].modified == false
-				and vim.api.nvim_buf_line_count(bufnr) == 1
-				and vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] == ""
-			then
-				require("mini.bufremove").delete(bufnr, false)
-			end
+			vim.bo[args.buf].buflisted = false
+			vim.bo[args.buf].bufhidden = "wipe"
 		end,
 	})
+
+	-- --Delete empty buffer on BufLeave
+	-- vim.api.nvim_create_autocmd("BufLeave", {
+	-- 	callback = function(args)
+	-- 		local buf = args.buf
+	-- 		local bufname = vim.api.nvim_buf_get_name(buf)
+	-- 		local content = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+	-- 		local text = table.concat(content, "\n"):gsub("^%s*(.-)%s*$", "%1") -- strip whitespace
+	--
+	-- 		if bufname == "" and text == "" then
+	-- 			vim.api.nvim_buf_delete(buf, { force = true })
+	-- 		end
+	-- 	end,
+	-- })
 end
 
 return M
