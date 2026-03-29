@@ -23,7 +23,7 @@ function M.setup()
 	vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 	-- Editing behavior
-	vim.o.mouse = ""
+	vim.o.mouse = "a"
 	vim.o.breakindent = true
 	vim.o.ignorecase = true
 	vim.o.smartcase = true

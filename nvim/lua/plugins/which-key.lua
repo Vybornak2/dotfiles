@@ -13,8 +13,7 @@ return {
 		-- Document existing key chains
 		spec = {
 			{ "<leader>a", group = "[A]I", icon = "󰚩", mode = { "n", "v" } },
-			{ "<leader>ac", group = "[C]LI", icon = "󰚩", mode = { "n", "v" } },
-			{ "<leader>f", group = "[F]ile", icon = "󰈙", mode = { "n" } },
+			{ "<leader>f", group = "[E]xplore", icon = "󰈙", mode = { "n" } },
 			{ "<leader>g", group = "[G]it", icon = "", mode = { "n", "v" } },
 			{ "<leader>n", group = "[N]eoVim", icon = "", mode = { "n", "v" } },
 			{ "<leader>r", group = "[R]EPL", icon = "", mode = { "n", "v" } },

@@ -15,7 +15,7 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
-		{ "j-hui/fidget.nvim", opts = {} },
+		"folke/snacks.nvim",
 	},
 	config = function()
 		--  This function gets run when an LSP attaches to a particular buffer.
@@ -49,7 +49,7 @@ return {
 						end,
 					})
 				end
-		end,
+			end,
 		})
 
 		-- Enable language servers (auto-installed). See :help lsp-config for customization.

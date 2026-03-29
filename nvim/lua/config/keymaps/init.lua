@@ -3,7 +3,7 @@ local modules = {
 	"config.keymaps.telescope",
 	"config.keymaps.codecompanion",
 	"config.keymaps.lsp",
-	"config.keymaps.minifiles",
+	"config.keymaps.snacks",
 	"config.keymaps.iron",
 	"config.keymaps.copilot",
 	"config.keymaps.persistence",
