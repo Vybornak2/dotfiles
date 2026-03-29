@@ -13,11 +13,6 @@
 - check LuaSnip congiguration and usage
 - check loging of AI payload (done via autocmd)
 
-## Diff
-
-- diffview congig
-- diff git changes integration
-
 ## Debugger
 
 - nvim-dap 
@@ -32,9 +27,8 @@
 ## Learn
 
 - [Neovim terminal](https://www.youtube.com/watch?v=ooTcnx066Do)
-- `:help lua-guide`to
+- `:help lua-guide`
 - check one additional source for learning lua and neovim configuration
-- `diff` git changes integration
 
 ## Optional
 
