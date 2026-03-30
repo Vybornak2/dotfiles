@@ -5,7 +5,7 @@ function M.setup()
 		require("snacks.explorer").open()
 	end, { desc = "[T]oggle" })
 
-	vim.keymap.set("n", "<leader>fl", function()
+	vim.keymap.set("n", "<leader>el", function()
 		require("snacks.explorer").reveal()
 	end, { desc = "[R]eveal" })
 end
