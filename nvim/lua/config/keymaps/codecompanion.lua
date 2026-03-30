@@ -1,10 +1,19 @@
 local M = {}
 
 function M.setup()
-	vim.keymap.set({ "n", "v" }, "<leader>aa", function()
-		require("codecompanion").actions({})
-		-- require("codecompanion").actions({ window_opts = { layout = "float", width = 0.4, height = 0.4 } })
-	end, { desc = "[A]ctions" })
+	vim.keymap.set(
+		{ "n", "v" },
+		"<leader>aa",
+		"<cmd>CodeCompanionActions<cr>",
+		{ noremap = true, silent = true, desc = "[A]ctions" }
+	)
+	vim.keymap.set(
+		"v",
+		"<leader>ai",
+		"<cmd>CodeCompanionChat Add<cr>",
+		{ noremap = true, silent = true, desc = "[I]nsert" }
+	)
+	vim.keymap.set("v", "<leader>ae", "<cmd>CodeCompanion<cr>", { noremap = true, silent = true, desc = "[E]dit" })
 
 	vim.keymap.set({ "n", "v" }, "<leader>an", function()
 		require("codecompanion").chat()
@@ -13,10 +22,6 @@ function M.setup()
 	vim.keymap.set({ "n", "v" }, "<leader>at", function()
 		require("codecompanion").toggle()
 	end, { desc = "[T]oggle" })
-
-	vim.keymap.set({ "n", "v" }, "<leader>ai", function()
-		require("codecompanion").add({})
-	end, { desc = "[I]nsert" })
 
 	vim.keymap.set({ "n", "v" }, "<leader>acp", function()
 		return require("codecompanion").cli({ prompt = true })
@@ -42,6 +47,9 @@ function M.setup()
 			{ focus = false, submit = true }
 		)
 	end, { desc = "[T]erminal" })
+
+	-- Expand 'cc' into 'CodeCompanion' in the command line
+	vim.cmd([[cab cc CodeCompanion]])
 end
 
 return M

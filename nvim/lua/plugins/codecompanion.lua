@@ -8,35 +8,128 @@ return {
 		require("codecompanion").setup({
 			display = {
 				chat = {
-					show_settings = true,
+					icons = {
+						chat_fold = " ",
+						chat_context = "📎️",
+					},
+					-- show_settings = true,
+					fold_reasoning = false,
+					show_reasoning = true,
+				},
+				diff = {
+					enabled = true,
 				},
 			},
 			-- opts = {
 			-- 	log_level = "DEBUG", -- TRACE|DEBUG|ERROR|INFO
 			-- },
+			adapters = {
+				http = {
+					copilot_chat = function()
+						return require("codecompanion.adapters").extend("copilot", {
+							schema = {
+								model = { default = "gpt-5-mini" },
+								max_tokens = { default = 8192 },
+								temperature = { default = 0.4 },
+							},
+						})
+					end,
+					copilot_inline = function()
+						return require("codecompanion.adapters").extend("copilot", {
+							schema = {
+								model = { default = "gpt-4.1" },
+								max_tokens = { default = 1024 },
+								temperature = { default = 0.0 },
+							},
+						})
+					end,
+					gemini_vertex_free = function()
+						return require("codecompanion.adapters").extend("gemini_cli", {
+							defaults = {
+								auth_method = "vertex-ai",
+							},
+							env = {
+								GOOGLE_GENAI_USE_VERTEXAI = "true",
+								GOOGLE_CLOUD_PROJECT = "cmd:secret-tool lookup name gemini_project_free",
+								GOOGLE_CLOUD_LOCATION = "europe-central2",
+								GEMINI_MODEL = "gemini-2.5-flash",
+							},
+							schema = {
+								model = {
+									default = "gemini-2.5-flash",
+								},
+							},
+						})
+					end,
+					gemini_vertex_chat_billing = function()
+						return require("codecompanion.adapters").extend("gemini_cli", {
+							defaults = {
+								auth_method = "vertex-ai",
+							},
+							env = {
+								GOOGLE_GENAI_USE_VERTEXAI = "true",
+								GOOGLE_CLOUD_PROJECT = "cmd:secret-tool lookup name gemini_project_billing",
+								GOOGLE_CLOUD_LOCATION = "europe-central2",
+								GEMINI_MODEL = "gemini-2.5-pro",
+							},
+							schema = {
+								model = {
+									default = "gemini-2.5-pro",
+								},
+								temperature = { default = 0.7 },
+								max_tokens = { default = 8192 },
+								top_p = { default = 0.95 },
+							},
+						})
+					end,
+					gemini_chat_free = function()
+						return require("codecompanion.adapters").extend("gemini", {
+							schema = {
+								model = { default = "gemini-2.5-flash" },
+								auth_method = { default = "gemini-api-key" },
+								--[[ Defaults
+									model: gemini-2.5-flash
+									max_tokens: null
+									temperature: null
+									top_p: null
+									reasoning_effort: high
+									auth_method: gemini-api-key
+								--]]
+								temperature = { default = 0.7 },
+								max_tokens = { default = 8192 },
+								top_p = { default = 0.95 },
+							},
+							env = {
+								api_key = "cmd:secret-tool lookup name gemini_api_key_free",
+							},
+						})
+					end,
+					gemini_inline_free = function()
+						return require("codecompanion.adapters").extend("gemini", {
+							schema = {
+								model = { default = "gemini-2.5-flash" },
+								auth_method = { default = "gemini-api-key" },
+								temperature = { default = 0.0 },
+								max_tokens = { default = 4096 }, -- Shorter for inline diffs
+								top_p = { default = 1.0 },
+							},
+							env = {
+								api_key = "cmd:secret-tool lookup name gemini_api_key_free",
+							},
+						})
+					end,
+				},
+			},
 			interactions = {
 				chat = {
-					adapter = {
-						name = "copilot",
-						-- model = "gpt-5.3-codex",
-						model = "gpt-4.1",
-					},
-					keymaps = {
-						change_model = {
-							modes = { n = "<leader>am" },
-							description = "Change the AI model",
-							callback = function(chat)
-								require("codecompanion.interactions.chat.keymaps.change_adapter").select_model(chat)
-							end,
-						},
-					},
+					-- adapter = "copilot_chat",
+					-- adapter = "gemini_vertex_free",
+					adapter = "gemini_vertex_chat_billing",
+					-- adapter = "gemini_chat_free",
 				},
 				inline = {
-					adapter = {
-						name = "copilot",
-						--model = "gpt-5.3-codex",
-						model = "gpt-4.1",
-					},
+					-- adapter = "gemini_inline_free",
+					adapter = "copilot_inline",
 				},
 				cli = {
 					agent = "copilot",
@@ -51,18 +144,6 @@ return {
 							provider = "terminal",
 						},
 					},
-				},
-			},
-			adapters = {
-				acp = {
-					gemini_cli = function()
-						return require("codecompanion.adapters").extend("gemini_cli", {
-							defaults = {
-								auth_method = "oauth-personal", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
-							},
-							-- env = { GEMINI_API_KEY = "cmd:op read op://personal/Gemini_API/credential --no-newline" },
-						})
-					end,
 				},
 			},
 		})
