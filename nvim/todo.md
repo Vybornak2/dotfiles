@@ -6,6 +6,8 @@
 - add prompt templates
 - add custom commands
 
+- add anthropic
+
 ## Code Snippets
 
 - add custom snippets (friendlysnippets.nvim)
@@ -38,4 +40,5 @@
 - `python` tools / workflow integration options
 - `rust` tools / workflow integration options
 - undodo-tree or similar plugin
+- try Qwen2.5
 
