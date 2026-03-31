@@ -14,6 +14,8 @@ return {
 		spec = {
 			{ "<leader>a", group = "[A]I", icon = "󰚩", mode = { "n", "v" } },
 			{ "<leader>ac", group = "[C]LI", icon = "", mode = { "n", "v" } },
+			{ "<leader>c", group = "[C]ode", icon = "", mode = { "n", "v" } },
+			{ "<leader>cn", group = "[N]eogen", icon = "", mode = { "n", "v" } },
 			{ "<leader>e", group = "[E]xplore", icon = "󰈙", mode = { "n" } },
 			{ "<leader>g", group = "[G]it", icon = "", mode = { "n", "v" } },
 			{ "<leader>n", group = "[N]eoVim", icon = "", mode = { "n", "v" } },

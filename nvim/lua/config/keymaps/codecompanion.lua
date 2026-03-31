@@ -13,7 +13,14 @@ function M.setup()
 		"<cmd>CodeCompanionChat Add<cr>",
 		{ noremap = true, silent = true, desc = "[I]nsert" }
 	)
-	vim.keymap.set("v", "<leader>ae", "<cmd>CodeCompanion<cr>", { noremap = true, silent = true, desc = "[E]dit" })
+	vim.keymap.set("v", "<leader>ae", ":'<,'>CodeCompanion<cr>", { noremap = true, silent = true, desc = "[E]dit" })
+
+	vim.keymap.set(
+		"v",
+		"<leader>ar",
+		":'<,'>CodeCompanion refactor this<cr>",
+		{ noremap = true, silent = true, desc = "[R]efactor" }
+	)
 
 	vim.keymap.set({ "n", "v" }, "<leader>an", function()
 		require("codecompanion").chat()

@@ -122,10 +122,10 @@ return {
 			},
 			interactions = {
 				chat = {
-					-- adapter = "copilot_chat",
 					-- adapter = "gemini_vertex_free",
-					adapter = "gemini_vertex_chat_billing",
+					-- adapter = "gemini_vertex_chat_billing",
 					-- adapter = "gemini_chat_free",
+					adapter = "copilot_chat",
 				},
 				inline = {
 					-- adapter = "gemini_inline_free",
