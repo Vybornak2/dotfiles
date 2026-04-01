@@ -6,7 +6,13 @@
 - add prompt templates
 - add custom commands
 
-- add anthropic
+## Bugs
+
+- snacks.cmp and copilot ghost text, accept interference
+
+## Improvements
+
+- setup LSP servers to understand environments, Virtualenvs, etc
 
 ## Code Snippets
 
@@ -26,6 +32,10 @@
 - deps installation
 - checkhealth
 
+## Plugins, Keymaps
+
+- attach keymaps only on specific ft, events, etc
+
 ## Learn
 
 - [Neovim terminal](https://www.youtube.com/watch?v=ooTcnx066Do)
@@ -40,5 +50,7 @@
 - `python` tools / workflow integration options
 - `rust` tools / workflow integration options
 - undodo-tree or similar plugin
+
 - try Qwen2.5
+- try ClaudeCode ingetration
 
