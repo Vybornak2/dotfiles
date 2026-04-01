@@ -1,53 +1,29 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	lazy = false,
 	build = ":TSUpdate",
-	branch = "main",
-	-- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
+	main = "nvim-treesitter.configs",
+	lazy = false,
+	priority = 1000,
+	init = function(plugin)
+		require("lazy.core.loader").add_to_rtp(plugin)
+	end,
 	config = function()
-		local parsers = {
-			"bash",
-			"c",
-			"python",
-			"diff",
-			"html",
-			"comment",
-			"lua",
-			"luadoc",
-			"markdown",
-			"markdown_inline",
-			"query",
-			"vim",
-			"regex",
-			"vimdoc",
-			"latex",
-			"yaml",
-		}
-		require("nvim-treesitter").install(parsers)
-		vim.api.nvim_create_autocmd("FileType", {
-			callback = function(args)
-				local buf, filetype = args.buf, args.match
-
-				local language = vim.treesitter.language.get_lang(filetype)
-				if not language then
-					return
-				end
-
-				-- check if parser exists and load it
-				if not vim.treesitter.language.add(language) then
-					return
-				end
-				-- enables syntax highlighting and other treesitter features
-				vim.treesitter.start(buf, language)
-
-				-- enables treesitter based folds
-				-- for more info on folds see `:help folds`
-				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-				vim.wo.foldmethod = "indent"
-
-				-- enables treesitter based indentation
-				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-			end,
+		-- Direct call to verify pathing
+		local ok, configs = pcall(require, "nvim-treesitter.configs")
+		if not ok then
+			vim.notify("Treesitter module not found in RTP", vim.log.levels.ERROR)
+			return
+		end
+		configs.setup({
+			ensure_installed = {
+				"bash", "c", "python", "diff", "html", "comment", "lua", "luadoc",
+				"markdown", "markdown_inline", "query", "vim", "regex", "vimdoc",
+				"latex", "yaml",
+			},
+			sync_install = false,
+			auto_install = true,
+			highlight = { enable = true },
+			indent = { enable = true },
 		})
 	end,
 }

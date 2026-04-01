@@ -1,5 +1,4 @@
 --[[ REPL Keymaps ]]
-local M = {}
 
 local function find_repl_buf(ft)
 	local repl_tag = ft .. "_repl"
@@ -138,15 +137,11 @@ local function clear_repl()
 	send_raw_to_repl("clear", "clear")
 end
 
-function M.setup()
-	vim.keymap.set({ "n", "v" }, "<leader>rt", toggle_repl, { desc = "[T]oggle" })
-	vim.keymap.set({ "n", "v" }, "<leader>rf", focus_repl, { desc = "[F]ocus" })
-	vim.keymap.set({ "n", "v" }, "<leader>rs", send_to_repl, { desc = "[S]end" })
-	vim.keymap.set("n", "<leader>rR", "<cmd>IronRestart<cr>", { desc = "[R]estart" })
-	vim.keymap.set("n", "<leader>rf", send_file_to_repl, { desc = "[F]ile" })
-	vim.keymap.set("n", "<leader>rp", send_paragraph_to_repl, { desc = "[P]aragraph" })
-	vim.keymap.set("n", "<leader>rq", quit_repl, { desc = "[Q]uit" })
-	vim.keymap.set("n", "<leader>rc", clear_repl, { desc = "[C]lear" })
-end
-
-return M
+vim.keymap.set({ "n", "v" }, "<leader>rt", toggle_repl, { desc = "[T]oggle" })
+vim.keymap.set({ "n", "v" }, "<leader>rf", focus_repl, { desc = "[F]ocus" })
+vim.keymap.set({ "n", "v" }, "<leader>rs", send_to_repl, { desc = "[S]end" })
+vim.keymap.set("n", "<leader>rR", "<cmd>IronRestart<cr>", { desc = "[R]estart" })
+vim.keymap.set("n", "<leader>rf", send_file_to_repl, { desc = "[F]ile" })
+vim.keymap.set("n", "<leader>rp", send_paragraph_to_repl, { desc = "[P]aragraph" })
+vim.keymap.set("n", "<leader>rq", quit_repl, { desc = "[Q]uit" })
+vim.keymap.set("n", "<leader>rc", clear_repl, { desc = "[C]lear" })

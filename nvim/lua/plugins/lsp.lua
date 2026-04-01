@@ -1,8 +1,9 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		-- Mason must be loaded before its dependents so we need to set it up here.
-		-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+		"mason-org/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"folke/snacks.nvim",
 		{
 			"mason-org/mason.nvim",
 			---@module 'mason.settings'
@@ -10,25 +11,15 @@ return {
 			---@diagnostic disable-next-line: missing-fields
 			opts = {},
 		},
-		-- Maps LSP server names between nvim-lspconfig and Mason package names.
-		"mason-org/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-		-- Useful status updates for LSP.
-		"folke/snacks.nvim",
 	},
 	config = function()
-		--  This function gets run when an LSP attaches to a particular buffer.
-		--    That is to say, every time a new file is opened that is associated with
-		--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-		--    function will be executed to configure the current buffer
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 			callback = function(event)
 				-- Highlight references under the cursor after a delay; highlights clear on cursor move.
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client:supports_method("textDocument/documentHighlight", event.buf) then
-					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+					local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
 						group = highlight_augroup,
@@ -42,10 +33,10 @@ return {
 					})
 
 					vim.api.nvim_create_autocmd("LspDetach", {
-						group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+							vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
 						end,
 					})
 				end
@@ -55,11 +46,34 @@ return {
 		-- Enable language servers (auto-installed). See :help lsp-config for customization.
 		---@type table<string, vim.lsp.Config>
 		local servers = {
-			basedpyright = {},
-			ruff = {},
-			rust_analyzer = {},
-			stylua = {}, -- Used to format Lua code
-			-- Special Lua Config, as recommended by neovim help docs
+			-- Python
+			basedpyright = {
+				settings = {
+					python = {
+						venvPath = vim.fn.getcwd() .. "/.venv",
+						analysis = {
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "workspace",
+						},
+					},
+				},
+			},
+			-- Rust
+			rust_analyzer = {
+				settings = {
+					["rust-analyzer"] = {
+						cargo = { allFeatures = true },
+						checkOnSave = { command = "clippy" },
+					},
+				},
+			},
+			-- C/C++
+			clangd = {
+				cmd = { "clangd", "--background-index" },
+				filetypes = { "c", "cpp", "objc", "objcpp" },
+			},
+			-- Lua
 			lua_ls = {
 				on_init = function(client)
 					if client.workspace_folders then
@@ -71,7 +85,6 @@ return {
 							return
 						end
 					end
-
 					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
 						runtime = {
 							version = "LuaJIT",
@@ -79,8 +92,6 @@ return {
 						},
 						workspace = {
 							checkThirdParty = false,
-							-- NOTE: this is a lot slower and will cause issues when working on your own configuration.
-							--  See https://github.com/neovim/nvim-lspconfig/issues/3189
 							library = vim.tbl_extend("force", vim.api.nvim_get_runtime_file("", true), {
 								"${3rd}/luv/library",
 								"${3rd}/busted/library",
@@ -95,10 +106,6 @@ return {
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			-- You can add other tools here that you want Mason to install
-		})
-
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		for name, server in pairs(servers) do

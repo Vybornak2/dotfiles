@@ -1,8 +1,6 @@
 --[[Keymaps Markdown-Preview]]
 -- DISABLED by default
 
-local M = {}
-
 local state = { active = false }
 
 local function md_preview_start()
@@ -31,12 +29,8 @@ local function md_preview_toggle()
 	end
 end
 
-function M.setup()
-	vim.api.nvim_create_user_command("MarkdownPreview", md_preview_start, { desc = "Start Markdown Preview" })
-	vim.api.nvim_create_user_command("MarkdownPreviewStop", md_preview_stop, { desc = "Stop Markdown Preview" })
-	vim.api.nvim_create_user_command("MarkdownPreviewToggle", md_preview_toggle, { desc = "Toggle Markdown Preview" })
+vim.api.nvim_create_user_command("MarkdownPreview", md_preview_start, { desc = "Start Markdown Preview" })
+vim.api.nvim_create_user_command("MarkdownPreviewStop", md_preview_stop, { desc = "Stop Markdown Preview" })
+vim.api.nvim_create_user_command("MarkdownPreviewToggle", md_preview_toggle, { desc = "Toggle Markdown Preview" })
 
-	vim.keymap.set("n", "<leader>tm", "<cmd>MarkdownPreviewToggle<CR>", { desc = "[M]arkdown" })
-end
-
-return M
+vim.keymap.set("n", "<leader>tm", "<cmd>MarkdownPreviewToggle<CR>", { desc = "[M]arkdown" })

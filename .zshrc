@@ -33,6 +33,9 @@ typeset -U path PATH
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# NVIM
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
 # Local user tools.
 [[ -d "$HOME/.local/bin" ]] && path+=("$HOME/.local/bin")
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"

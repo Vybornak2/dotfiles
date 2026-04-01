@@ -1,53 +1,55 @@
 --[[ Options ]]
 -- `:help vim.o`, `:help lua-options`
 
-local M = {}
+-- Leader must be set before plugins load
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-function M.setup()
-	vim.g.have_nerd_font = true
+-- Indentation
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
-	-- Indentation
-	vim.opt.tabstop = 4
-	vim.opt.softtabstop = 4
-	vim.opt.shiftwidth = 4
-	vim.opt.expandtab = true
+-- Line numbers and UI
+vim.o.number = true
+vim.g.have_nerd_font = true
 
-	-- Line numbers and UI
-	vim.o.number = true
-	-- vim.o.relativenumber = true
-	vim.o.signcolumn = "yes"
-	vim.o.cursorline = true
-	vim.o.scrolloff = 10
-	vim.o.showmode = false
-	vim.o.list = true
-	vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.o.relativenumber = true
+vim.o.signcolumn = "yes"
+vim.o.cursorline = true
+vim.o.scrolloff = 10
+vim.o.showmode = false
+vim.o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
-	-- Editing behavior
-	vim.o.mouse = "a"
-	vim.o.breakindent = true
-	vim.o.ignorecase = true
-	vim.o.smartcase = true
-	vim.o.foldenable = false
-	vim.o.confirm = true
+-- Editing behavior
+vim.o.mouse = "a"
+vim.o.breakindent = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.confirm = true
 
-	-- Splits and command preview
-	vim.o.splitright = true
-	vim.o.splitbelow = true
-	vim.o.inccommand = "split"
+-- Folding
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldenable = false
 
-	-- Timing
-	vim.o.updatetime = 250
-	vim.o.timeoutlen = 300
+-- Splits and command preview
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.inccommand = "split"
 
-	-- Files and persistence
-	vim.o.undofile = true
-	vim.opt.swapfile = false
+-- Timing
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
 
-	-- Clipboard
-	vim.o.clipboard = "unnamedplus"
+-- Files and persistence
+vim.o.undofile = true
+vim.opt.swapfile = false
 
-	-- Session options
-	vim.opt.sessionoptions:remove("blank")
-end
+-- Clipboard
+vim.o.clipboard = "unnamedplus"
 
-return M
+-- Session options
+vim.opt.sessionoptions:remove("blank")

@@ -1,7 +1,5 @@
 --[[Persistence keymaps]]
 
-local M = {}
-
 local clean_empty_buffers = function()
 	local buffers = vim.fn.getbufinfo({ buflisted = 1 })
 	for _, buf in ipairs(buffers) do
@@ -11,33 +9,29 @@ local clean_empty_buffers = function()
 	end
 end
 
-function M.setup()
-	vim.keymap.set("n", "<leader>uss", function()
-		require("persistence").save()
-	end, { desc = "[S]ave" })
+vim.keymap.set("n", "<leader>uss", function()
+	require("persistence").save()
+end, { desc = "[S]ave" })
 
-	vim.keymap.set("n", "<leader>usp", function()
-		require("persistence").select()
-	end, { desc = "[P]ick" })
+vim.keymap.set("n", "<leader>usp", function()
+	require("persistence").select()
+end, { desc = "[P]ick" })
 
-	vim.keymap.set("n", "<leader>usl", function()
-		require("persistence").load({ last = true })
-	end, { desc = "Last [l]oad" })
+vim.keymap.set("n", "<leader>usl", function()
+	require("persistence").load({ last = true })
+end, { desc = "Last [l]oad" })
 
-	vim.keymap.set("n", "<leader>usL", function()
-		require("persistence").load()
-		clean_empty_buffers()
-	end, { desc = "[L]oad for CWD" })
+vim.keymap.set("n", "<leader>usL", function()
+	require("persistence").load()
+	clean_empty_buffers()
+end, { desc = "[L]oad for CWD" })
 
-	vim.keymap.set("n", "<leader>usx", function()
-		require("persistence").stop()
-		clean_empty_buffers()
-	end, { desc = "[X] Stop Persistence" })
+vim.keymap.set("n", "<leader>usx", function()
+	require("persistence").stop()
+	clean_empty_buffers()
+end, { desc = "[X] Stop Persistence" })
 
-	vim.keymap.set("n", "<leader>usr", function()
-		require("persistence").start()
-		clean_empty_buffers()
-	end, { desc = "[R]un" })
-end
-
-return M
+vim.keymap.set("n", "<leader>usr", function()
+	require("persistence").start()
+	clean_empty_buffers()
+end, { desc = "[R]un" })
