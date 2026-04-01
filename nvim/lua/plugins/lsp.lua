@@ -103,6 +103,12 @@ return {
 					Lua = {},
 				},
 			},
+			jsonls = {},
+			yamlls = {},
+			bashls = {},
+			taplo = {}, -- TOML
+			cmake = {},
+			dockerls = {},
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})
