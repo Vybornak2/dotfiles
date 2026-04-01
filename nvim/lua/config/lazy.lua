@@ -26,7 +26,7 @@ require("lazy").setup({
 	opts = {
 		install = {
 			missing = true,
-			colorscheme = { "catppuccinodark" },
+			colorscheme = { "catppuccin" },
 		},
 		checker = {
 			enabled = true,

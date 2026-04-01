@@ -4,7 +4,6 @@ return {
 	config = function()
 		local view = require("iron.view")
 		local common = require("iron.fts.common")
-
 		require("iron").setup({
 			config = {
 				scratch_repl = true,
@@ -19,6 +18,7 @@ return {
 						block_dividers = { "# %%", "#%%" },
 					},
 				},
+				---@diagnostic disable-next-line: unused-local
 				repl_filetype = function(bufnr, ft)
 					return ft
 				end,

@@ -5,8 +5,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	ft = { "markdown", "codecompanion" },
-	---@module 'render-markdown'
-	---@type render.md.UserConfig
 	opts = {
 		file_types = { "markdown", "codecompanion" },
 	},
