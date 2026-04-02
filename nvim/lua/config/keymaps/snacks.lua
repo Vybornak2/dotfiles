@@ -1,6 +1,5 @@
 -- [[ Snacks Keymaps ]]
 
--- These are already closures; they are deferred correctly.
 local find_config_files = function()
     Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 end
@@ -13,11 +12,9 @@ local search_current_buffer = function()
     Snacks.picker.lines()
 end
 
--- CRITICAL: Wrap these to prevent eager loading of the explorer module
 vim.keymap.set("n", "<leader>et", function() Snacks.explorer.open() end, { desc = "[T]oggle" })
 vim.keymap.set("n", "<leader>el", function() Snacks.explorer.reveal() end, { desc = "[R]eveal" })
 
--- Wrap these references to prevent the Snacks metatable from triggering on boot
 vim.keymap.set("n", "<leader>sb", function() Snacks.picker.buffers() end, { desc = "[B]uffers" })
 vim.keymap.set("n", "<leader>sc", function() Snacks.picker.commands() end, { desc = "[C]ommands" })
 vim.keymap.set("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "[D]iagnostics" })

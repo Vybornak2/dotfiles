@@ -21,29 +21,25 @@ vim.keymap.set("n", "<leader>td", vim.diagnostic.setloclist, { desc = "[D]iagnos
 
 --[[ Neovim ]]
 vim.keymap.set("n", "<leader>nr", function()
-	for name, _ in pairs(package.loaded) do
-		if name:match("^plugins") or name:match("^config") then
-			package.loaded[name] = nil
-		end
-	end
-	dofile(vim.env.MYVIMRC)
-	vim.notify("Config Reloaded!")
+    for name, _ in pairs(package.loaded) do
+        if name:match("^plugins") or name:match("^config") then
+            package.loaded[name] = nil
+        end
+    end
+    dofile(vim.env.MYVIMRC)
+    vim.notify("Config Reloaded!")
 end, { desc = "[R]eload" })
 
-vim.keymap.set("n", "<leader>nl", function()
-	vim.cmd("Lazy")
-end, { desc = "[L]azy" })
+vim.keymap.set("n", "<leader>nl", "<cmd>Lazy<cr>", { desc = "[L]azy" })
 
-vim.keymap.set("n", "<leader>nm", function()
-	vim.cmd("Mason")
-end, { desc = "[M]ason" })
+vim.keymap.set("n", "<leader>nm", "<cmd>Mason<cr>", { desc = "[M]ason" })
 
 --[[ Utils ]]
 vim.keymap.set("n", "<leader>ur", function()
-	vim.cmd("edit!")
+    vim.cmd("edit!")
 end, { desc = "[R]eload" })
 
 -- Format (conform.nvim)
 vim.keymap.set("", "<leader><leader>", function()
-	require("conform").format({ async = true, lsp_format = "fallback" })
+    require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format buffer" })
