@@ -8,7 +8,6 @@ local modules = {
 	"config.keymaps.copilot",
 	"config.keymaps.persistence",
 	"config.keymaps.git",
-	-- "config.keymaps.markdown-preview",
 }
 
 for _, name in ipairs(modules) do
