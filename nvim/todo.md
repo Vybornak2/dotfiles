@@ -25,13 +25,6 @@
 
 - nvim-dap 
 
-## Review
-
-- config
-- plugins
-- deps installation
-- checkhealth
-
 ## Plugins, Keymaps
 
 - attach keymaps only on specific ft, events, etc
