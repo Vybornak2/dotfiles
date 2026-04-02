@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"folke/snacks.nvim",
 		{
 			"mason-org/mason.nvim",
 			---@module 'mason.settings'

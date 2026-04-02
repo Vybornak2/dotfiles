@@ -1,6 +1,5 @@
 local modules = {
 	"config.keymaps.general",
-	"config.keymaps.telescope",
 	"config.keymaps.codecompanion",
 	"config.keymaps.lsp",
 	"config.keymaps.snacks",
