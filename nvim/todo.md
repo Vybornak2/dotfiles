@@ -9,25 +9,19 @@
 ## Bugs
 
 - snacks.cmp and copilot ghost text, accept interference
-
-## Improvements
-
-- setup LSP servers to understand environments, Virtualenvs, etc
+- neogen jumps (luasnip and neogen conflict likely)
 
 ## Code Snippets
 
-- add custom snippets (friendlysnippets.nvim)
-- autodocstring?
-- check LuaSnip congiguration and usage
-- check loging of AI payload (done via autocmd)
-
-## Debugger
-
-- nvim-dap 
+- FriendlySnippets config
+- LuaSnip config
+- NeoGen config
 
 ## Plugins, Keymaps
 
-- attach keymaps only on specific ft, events, etc
+- nvim-dap 
+- undotree
+- neotest
 
 ## Learn
 
@@ -35,14 +29,12 @@
 - `:help lua-guide`
 - check one additional source for learning lua and neovim configuration
 
-## Optional
+## Improvements
 
-- MKdocs flavored markdown integration options
-- Markdown latex rendering options
-- `:term` commands integration options
-- `python` tools / workflow integration options
-- `rust` tools / workflow integration options
-- undodo-tree or similar plugin
+- LSP servers config (.venv, .toml, ...)
+- attach keymaps only on specific ft, events, etc
+
+## Optional
 
 - try Qwen2.5
 - try ClaudeCode ingetration
