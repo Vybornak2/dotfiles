@@ -3,13 +3,11 @@
 ## Bugs
 
 - snacks.cmp and copilot ghost text, accept interference
-- neogen jumps (luasnip and neogen conflict likely)
 
 ## Code Snippets
 
 - FriendlySnippets config
 - LuaSnip config
-- NeoGen config
 
 ## Plugins, Keymaps
 
