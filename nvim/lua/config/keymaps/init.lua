@@ -5,7 +5,6 @@ local modules = {
     "config.keymaps.git",
     "config.keymaps.iron",
     "config.keymaps.lsp",
-    "config.keymaps.neogen",
     "config.keymaps.persistence",
     "config.keymaps.snacks",
 }
