@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
-log_info "Installing zsh"
-apt_install zsh
+if ! declare -F log_info >/dev/null 2>&1; then
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  # shellcheck source=lib/common.sh
+  source "$SCRIPT_DIR/lib/common.sh"
+fi
+
+if ! command -v zsh >/dev/null 2>&1; then
+  log_info "Installing zsh"
+  sudo apt-get install -y zsh
+else
+  log_info "zsh already installed"
+fi
 
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
   log_info "Installing Oh My Zsh"
@@ -33,7 +43,7 @@ fi
 
 if ! command -v zoxide >/dev/null 2>&1; then
   log_info "Installing zoxide"
-  apt_install zoxide
+  sudo apt-get install -y zoxide
 else
   log_info "zoxide already installed"
 fi

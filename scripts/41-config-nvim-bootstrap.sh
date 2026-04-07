@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if ! declare -F log_info >/dev/null 2>&1; then
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  # shellcheck source=lib/common.sh
+  source "$SCRIPT_DIR/lib/common.sh"
+fi
+
 log_info "Bootstrapping Neovim plugins and Mason tools (headless)"
 if command -v nvim >/dev/null 2>&1; then
   nvim --headless "+Lazy! sync" +qa || log_warn "Lazy sync failed; run inside Neovim later."

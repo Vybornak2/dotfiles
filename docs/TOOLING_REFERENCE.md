@@ -6,7 +6,7 @@ This document tracks the tools, package managers, and extension/plugin dependenc
 
 - Main installer: `scripts/install.sh`
 - Shared helpers: `scripts/lib/common.sh`
-- Modules: `scripts/modules/*.sh`
+- Modules: `scripts/*.sh`
 
 ## Package and environment managers
 
@@ -15,30 +15,32 @@ This document tracks the tools, package managers, and extension/plugin dependenc
 - Rustup (Rust toolchain manager): <https://rustup.rs/>
 - uv (Python package/tool manager): <https://docs.astral.sh/uv/>
 - nvm (Node.js version manager): <https://github.com/nvm-sh/nvm>
+- Kitty installer: <https://sw.kovidgoyal.net/kitty/installer.sh>
 - Mason (Neovim external tools manager): <https://github.com/mason-org/mason.nvim>
 - lazy.nvim (Neovim plugin manager): <https://github.com/folke/lazy.nvim>
 
 ## Core CLI tools installed by installer
 
-Source: `scripts/modules/20-deps-core-packages.sh`, `scripts/modules/26-deps-node.sh`, `scripts/modules/32-tools-extra-cli.sh`
+Source: `scripts/20-deps-core-packages.sh`, `scripts/30-tools-node.sh`, `scripts/31-tools-kitty.sh`, `scripts/34-tools-extra-cli.sh`, `scripts/35-tools-docker.sh`
 
 - Git: <https://git-scm.com/doc>
 - ripgrep (`rg`): <https://github.com/BurntSushi/ripgrep>
 - fd (`fd-find` package on Debian/Ubuntu): <https://github.com/sharkdp/fd>
 - fzf: <https://github.com/junegunn/fzf>
 - jq: <https://jqlang.github.io/jq/>
-- kitty: <https://sw.kovidgoyal.net/kitty/>
 - tree: <http://mama.indstate.edu/users/ice/tree/>
 - bat: <https://github.com/sharkdp/bat>
 - shellcheck: <https://www.shellcheck.net/>
 - Node.js (installed via nvm): <https://nodejs.org/en/docs>
 - npm (bundled with nvm-managed Node.js): <https://docs.npmjs.com/>
+- Docker CLI/Engine (Docker official Ubuntu repo): <https://docs.docker.com/engine/>
+- Docker Compose plugin: <https://docs.docker.com/compose/>
 - wl-clipboard: <https://github.com/bugaevc/wl-clipboard>
 - xclip: <https://github.com/astrand/xclip>
 
 ## Python tools installed via uv
 
-Source: `scripts/modules/32-tools-extra-cli.sh`
+Source: `scripts/34-tools-extra-cli.sh`
 
 - ruff: <https://docs.astral.sh/ruff/>
 - black: <https://black.readthedocs.io/>
@@ -51,10 +53,10 @@ Source: `scripts/modules/32-tools-extra-cli.sh`
 
 ## Language toolchains and build dependencies
 
-Source: `scripts/modules/21-deps-language-toolchains.sh`, `scripts/modules/31-tools-nvim.sh`
+Source: `scripts/21-deps-cpp.sh`, `scripts/33-tools-nvim.sh`
 
-- Neovim source repository: <https://github.com/neovim/neovim>
-- Neovim build docs: <https://github.com/neovim/neovim/blob/master/BUILD.md>
+- Neovim release downloads: <https://github.com/neovim/neovim/releases/latest>
+- Neovim 0.12.0+ required by installer
 - GCC: <https://gcc.gnu.org/onlinedocs/>
 - Clang/LLVM: <https://clang.llvm.org/docs/>
 - CMake: <https://cmake.org/documentation/>
@@ -65,7 +67,7 @@ Source: `scripts/modules/21-deps-language-toolchains.sh`, `scripts/modules/31-to
 
 ## Shell stack
 
-Source: `.zshrc`, `scripts/modules/30-tools-zsh.sh`
+Source: `.zshrc`, `scripts/32-tools-zsh.sh`
 
 - Zsh docs: <https://zsh.sourceforge.io/Doc/>
 - Oh My Zsh docs/wiki: <https://github.com/ohmyzsh/ohmyzsh/wiki>
@@ -73,6 +75,7 @@ Source: `.zshrc`, `scripts/modules/30-tools-zsh.sh`
 - zsh-autosuggestions: <https://github.com/zsh-users/zsh-autosuggestions>
 - zsh-syntax-highlighting: <https://github.com/zsh-users/zsh-syntax-highlighting>
 - zoxide: <https://github.com/ajeetdsouza/zoxide>
+- Zsh completion search paths: `/usr/local/share/zsh/site-functions`, `/usr/share/zsh/vendor-completions`
 
 ## Editor and IDE
 
@@ -84,14 +87,15 @@ Source: `.zshrc`, `scripts/modules/30-tools-zsh.sh`
 
 ### Visual Studio Code
 
-Source: `scripts/modules/33-tools-vscode.sh`
+Source: `scripts/36-tools-vscode.sh`
 
 - VS Code docs: <https://code.visualstudio.com/docs>
+- Microsoft repo setup: <https://code.visualstudio.com/docs/setup/linux>
 - Extension API/docs: <https://code.visualstudio.com/api>
 
 ## Fonts
 
-Source: `scripts/modules/22-deps-fonts.sh`
+Source: `scripts/25-deps-fonts.sh`
 
 - JetBrains Mono: <https://www.jetbrains.com/lp/mono/>
 - Nerd Fonts: <https://www.nerdfonts.com/>

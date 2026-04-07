@@ -14,11 +14,12 @@ This repository provides:
 ## Repository layout
 
 - `.zshrc`: shell config
-- `nvim/`: Neovim config
+- `.p10k.zsh`: Powerlevel10k config
+- `nvim/`: versioned Neovim Kickstart config
 - `kitty/`: Kitty terminal config
 - `settings.json`: VS Code user settings to be linked
 - `scripts/install.sh`: main installer entrypoint
-- `scripts/modules/`: modular install stages
+- `scripts/*.sh`: modular install stages
 - `docs/TOOLING_REFERENCE.md`: tools/packages reference
 - `docs/PLUGIN_WIKI.md`: plugin/extension wiki links
 
@@ -32,47 +33,49 @@ This repository provides:
 ```bash
 git clone https://github.com/Vybornak2/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-chmod +x scripts/install.sh
-./scripts/install.sh --skip 51-cleanup.sh
+chmod +x scripts/*.sh scripts/testing/*.sh
+./scripts/install.sh
+./scripts/42-config-git.sh
 ```
 
 Notes:
 
 - Run from the repository root.
 - Installer uses `sudo` for system packages.
-- Skipping cleanup keeps temporary build artifacts for debugging.
+- Each numbered script can also be run directly from `scripts/`.
+- Docker users need to log out and back in after install so the group change takes effect.
 
 ## Installer controls
 
 Run specific portions of the installer:
 
 ```bash
-./scripts/install.sh --from 30-tools-zsh.sh
-./scripts/install.sh --only 33-tools-vscode.sh
-./scripts/install.sh --skip 51-cleanup.sh
+./scripts/install.sh
+./scripts/42-config-git.sh
 ```
 
 Execution order is defined in `scripts/install.sh`:
 
 1. `10-setup-preflight.sh`
-2. `11-setup-system-update.sh`
-3. `20-deps-core-packages.sh`
-4. `21-deps-cpp.sh`
-5. `22-deps-python.sh`
-6. `23-deps-rust.sh`
-7. `24-deps-lua.sh`
-8. `25-deps-fonts.sh`
-9. `26-deps-node.sh`
-10. `30-tools-zsh.sh`
-11. `31-tools-nvim.sh`
-12. `32-tools-extra-cli.sh`
-13. `33-tools-vscode.sh`
-14. `40-config-links.sh`
-15. `41-config-nvim-bootstrap.sh`
-16. `42-config-git.sh`
-17. `43-config-terminal.sh`
-18. `50-verify.sh`
-19. `51-cleanup.sh`
+2. `20-deps-core-packages.sh`
+3. `21-deps-cpp.sh`
+4. `22-deps-python.sh`
+5. `23-deps-rust.sh`
+6. `24-deps-lua.sh`
+7. `25-deps-fonts.sh`
+8. `30-tools-node.sh`
+9. `31-tools-kitty.sh`
+10. `32-tools-zsh.sh`
+11. `33-tools-nvim.sh`
+12. `34-tools-extra-cli.sh`
+13. `35-tools-docker.sh`
+14. `36-tools-vscode.sh`
+15. `40-config-links.sh`
+16. `41-config-nvim-bootstrap.sh`
+17. `42-config-git.sh`
+18. `43-config-terminal.sh`
+19. `50-verify.sh`
+20. `51-cleanup.sh`
 
 ## Documentation
 

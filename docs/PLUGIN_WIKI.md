@@ -4,7 +4,7 @@ This page maps active plugins/extensions in this repo to their canonical docs an
 
 ## Zsh plugins and theme
 
-Source: `.zshrc`, `scripts/modules/30-tools-zsh.sh`
+Source: `.zshrc`, `scripts/32-tools-zsh.sh`
 
 | Plugin/Theme | Purpose | Reference |
 |---|---|---|
@@ -44,7 +44,7 @@ Source: `nvim/init.lua`
 
 ## Mason-managed external tools
 
-Source: `scripts/modules/41-config-nvim-bootstrap.sh`
+Source: `scripts/41-config-nvim-bootstrap.sh`
 
 | Tool | Role | Reference |
 |---|---|---|
@@ -55,7 +55,7 @@ Source: `scripts/modules/41-config-nvim-bootstrap.sh`
 
 ## VS Code extensions installed by script
 
-Source: `scripts/modules/33-tools-vscode.sh`
+Source: `scripts/36-tools-vscode.sh`
 
 Use marketplace URL format: `https://marketplace.visualstudio.com/items?itemName=<extension-id>`
 

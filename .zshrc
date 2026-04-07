@@ -62,6 +62,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git'
 
 # Autocompletion
+fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fpath)
 autoload -U compinit
 compinit -i
 
@@ -71,4 +72,3 @@ alias dt='cd ~/Desktop'
 alias pr='cd ~/Projects'
 alias dotfiles='cd "$DOTFILES_DIR"'
 alias ipy='uv tool run ipython'
-

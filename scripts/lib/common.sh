@@ -3,23 +3,27 @@ set -euo pipefail
 
 # Default source checkout workspace for repositories not tied to fixed runtime paths.
 SRC_DIR="${SRC_DIR:-$HOME/src}"
-INSTALL_TZ="${INSTALL_TZ:-Etc/UTC}"
+LOG_FD="${LOG_FD:-1}"
+LOG_ERR_FD="${LOG_ERR_FD:-2}"
+
+PATH="$HOME/.local/bin:$PATH"
+export PATH
 
 print_header() {
   local text="$1"
-  printf "\n==> %s\n" "$text"
+  printf "\n==> %s\n" "$text" >&"$LOG_FD"
 }
 
 log_info() {
-  printf "[INFO] %s\n" "$1"
+  printf "[INFO] %s\n" "$1" >&"$LOG_FD"
 }
 
 log_warn() {
-  printf "[WARN] %s\n" "$1"
+  printf "[WARN] %s\n" "$1" >&"$LOG_FD"
 }
 
 log_error() {
-  printf "[ERROR] %s\n" "$1" >&2
+  printf "[ERROR] %s\n" "$1" >&"$LOG_ERR_FD"
 }
 
 ensure_supported_os() {
@@ -48,34 +52,6 @@ ensure_sudo() {
   fi
 }
 
-apt_install() {
-  if [[ $# -eq 0 ]]; then
-    return 0
-  fi
-  sudo env DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true TZ="$INSTALL_TZ" apt-get install -y "$@"
-}
-
-apt_update() {
-  sudo env DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true TZ="$INSTALL_TZ" apt-get update
-}
-
-apt_upgrade() {
-  sudo env DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true TZ="$INSTALL_TZ" apt-get upgrade -y
-}
-
-run_module() {
-  local module_path="$1"
-
-  if [[ ! -f "$module_path" ]]; then
-    log_error "Module not found: $module_path"
-    exit 1
-  fi
-
-  print_header "Running $(basename "$module_path")"
-  # shellcheck disable=SC1090
-  source "$module_path"
-}
-
 ensure_line_in_file() {
   local line="$1"
   local file="$2"
@@ -93,22 +69,4 @@ ensure_src_dir() {
   else
     log_info "Source directory already exists: $SRC_DIR"
   fi
-}
-
-ensure_timezone_noninteractive() {
-  if [[ -f "/usr/share/zoneinfo/$INSTALL_TZ" ]]; then
-    sudo ln -snf "/usr/share/zoneinfo/$INSTALL_TZ" /etc/localtime
-    echo "$INSTALL_TZ" | sudo tee /etc/timezone >/dev/null
-  else
-    log_warn "Requested timezone not found: $INSTALL_TZ; falling back to Etc/UTC"
-    INSTALL_TZ="Etc/UTC"
-    sudo ln -snf "/usr/share/zoneinfo/$INSTALL_TZ" /etc/localtime
-    echo "$INSTALL_TZ" | sudo tee /etc/timezone >/dev/null
-  fi
-
-  if dpkg -s tzdata >/dev/null 2>&1; then
-    sudo env DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true TZ="$INSTALL_TZ" dpkg-reconfigure -f noninteractive tzdata >/dev/null 2>&1 || true
-  fi
-
-  log_info "Timezone configured for unattended installs: $INSTALL_TZ"
 }

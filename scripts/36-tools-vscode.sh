@@ -1,20 +1,35 @@
 #!/usr/bin/env bash
 
+if ! declare -F log_info >/dev/null 2>&1; then
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  # shellcheck source=lib/common.sh
+  source "$SCRIPT_DIR/lib/common.sh"
+fi
+
 if ! command -v code >/dev/null 2>&1; then
   log_info "Installing Visual Studio Code"
-  sudo install -d -m 0755 /etc/apt/keyrings
+  sudo apt-get install -y apt-transport-https
+  sudo install -d -m 0755 /usr/share/keyrings
+  sudo install -d -m 0755 /etc/apt/sources.list.d
 
-  if [[ ! -f /etc/apt/keyrings/packages.microsoft.gpg ]]; then
-    curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/packages.microsoft.gpg >/dev/null
-    sudo chmod go+r /etc/apt/keyrings/packages.microsoft.gpg
+  if [[ ! -f /usr/share/keyrings/microsoft.gpg ]]; then
+    curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft.gpg >/dev/null
+    sudo chmod 0644 /usr/share/keyrings/microsoft.gpg
   fi
 
-  if [[ ! -f /etc/apt/sources.list.d/vscode.list ]]; then
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list >/dev/null
+  if [[ ! -f /etc/apt/sources.list.d/vscode.sources ]]; then
+    sudo tee /etc/apt/sources.list.d/vscode.sources >/dev/null <<EOF
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: $(dpkg --print-architecture)
+Signed-By: /usr/share/keyrings/microsoft.gpg
+EOF
   fi
 
   sudo apt-get update
-  apt_install code
+  sudo apt-get install -y code
 else
   log_info "Visual Studio Code already installed"
 fi

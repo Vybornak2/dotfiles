@@ -3,30 +3,28 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_DIR="$SCRIPT_DIR/lib"
-MODULE_DIR="$SCRIPT_DIR/modules"
 
 # shellcheck source=lib/common.sh
 source "$LIB_DIR/common.sh"
 
-print_header "Dotfiles Installer"
 ensure_supported_os
 ensure_sudo
 
-# Ordered modules. Keep numeric prefixes to enforce a stable flow.
 MODULES=(
   "10-setup-preflight.sh"
-  "11-setup-system-update.sh"
   "20-deps-core-packages.sh"
   "21-deps-cpp.sh"
   "22-deps-python.sh"
   "23-deps-rust.sh"
   "24-deps-lua.sh"
   "25-deps-fonts.sh"
-  "26-deps-node.sh"
-  "30-tools-zsh.sh"
-  "31-tools-nvim.sh"
-  "32-tools-extra-cli.sh"
-  "33-tools-vscode.sh"
+  "30-tools-node.sh"
+  "31-tools-kitty.sh"
+  "32-tools-zsh.sh"
+  "33-tools-nvim.sh"
+  "34-tools-extra-cli.sh"
+  "35-tools-docker.sh"
+  "36-tools-vscode.sh"
   "40-config-links.sh"
   "41-config-nvim-bootstrap.sh"
   "42-config-git.sh"
@@ -35,58 +33,68 @@ MODULES=(
   "51-cleanup.sh"
 )
 
-# Optional module filtering:
-#   ./scripts/install.sh --from 30-tools-zsh.sh
-#   ./scripts/install.sh --only 33-tools-vscode.sh
-#   ./scripts/install.sh --skip 51-cleanup.sh
-FROM_MODULE=""
-ONLY_MODULE=""
-SKIP_MODULE=""
+run_module_with_summary() {
+  local module="$1"
+  local module_path="$SCRIPT_DIR/$module"
+  local fifo_dir
+  local fifo_path
+  local module_pid
+  local status
+  local line
 
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --from)
-      FROM_MODULE="${2:-}"
-      shift 2
-      ;;
-    --only)
-      ONLY_MODULE="${2:-}"
-      shift 2
-      ;;
-    --skip)
-      SKIP_MODULE="${2:-}"
-      shift 2
-      ;;
-    *)
-      echo "Unknown argument: $1" >&2
-      exit 1
-      ;;
-  esac
-done
+  printf "[..] %s\n" "$module"
 
-start_running="false"
-for module in "${MODULES[@]}"; do
-  if [[ -n "$ONLY_MODULE" && "$module" != "$ONLY_MODULE" ]]; then
-    continue
-  fi
+  fifo_dir="$(mktemp -d)"
+  fifo_path="$fifo_dir/output"
+  mkfifo "$fifo_path"
 
-  if [[ -n "$FROM_MODULE" && "$start_running" == "false" ]]; then
-    if [[ "$module" == "$FROM_MODULE" ]]; then
-      start_running="true"
+  set +e
+  LOG_FD=3 LOG_ERR_FD=3 "$module_path" 3>"$fifo_path" >/dev/null 2>&1 &
+  module_pid=$!
+
+  exec 4<"$fifo_path"
+
+  while :; do
+    if IFS= read -r -t 0.2 line <&4; then
+      printf "    %s\n" "$line"
     else
-      continue
+      if ! kill -0 "$module_pid" >/dev/null 2>&1; then
+        break
+      fi
     fi
+  done
+
+  wait "$module_pid" >/dev/null 2>&1
+  status=$?
+  set -e
+
+  while IFS= read -r -t 0.05 line <&4; do
+    if [[ -n "$line" ]]; then
+      printf "    %s\n" "$line"
+    fi
+  done
+
+  exec 4<&-
+  rm -rf "$fifo_dir"
+
+  if [[ $status -eq 0 ]]; then
+    printf "[done] %s\n" "$module"
   else
-    start_running="true"
+    printf "[fail] %s (exit %d)\n" "$module" "$status" >&2
   fi
 
-  if [[ -n "$SKIP_MODULE" && "$module" == "$SKIP_MODULE" ]]; then
-    log_warn "Skipping module: $module"
-    continue
-  fi
+  return $status
+}
 
-  run_module "$MODULE_DIR/$module"
+failures=()
+
+for module in "${MODULES[@]}"; do
+  if ! run_module_with_summary "$module"; then
+    failures+=("$module")
+  fi
 done
 
-print_header "Installer Finished"
-log_info "All requested modules completed."
+if [[ ${#failures[@]} -gt 0 ]]; then
+  log_error "Installer completed with ${#failures[@]} failed module(s): ${failures[*]}"
+  exit 1
+fi

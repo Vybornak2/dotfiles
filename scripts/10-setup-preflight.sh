@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if ! declare -F log_info >/dev/null 2>&1; then
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  # shellcheck source=lib/common.sh
+  source "$SCRIPT_DIR/lib/common.sh"
+fi
+
 log_info "Preflight checks and environment discovery"
 log_info "User: ${USER:-$(id -un)}"
 log_info "Home: $HOME"
@@ -23,4 +29,8 @@ fi
 ensure_src_dir
 log_info "Using source checkout directory: $SRC_DIR"
 
-ensure_timezone_noninteractive
+log_info "Updating apt package index"
+sudo apt-get update
+
+log_info "Upgrading installed packages"
+sudo apt-get upgrade -y
