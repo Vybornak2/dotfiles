@@ -1,5 +1,5 @@
 return {
 	"folke/persistence.nvim",
-	event = "BufReadPre",
+	event = "VimEnter",
 	opts = {},
 }

@@ -2,12 +2,7 @@
 
 ## Bugs
 
-- snacks.cmp and copilot ghost text, accept interference
-
-## Code Snippets
-
-- FriendlySnippets config
-- LuaSnip config
+- codecompanion generate commit message doesn't work
 
 ## Plugins, Keymaps
 
@@ -20,11 +15,6 @@
 - [Neovim terminal](https://www.youtube.com/watch?v=ooTcnx066Do)
 - `:help lua-guide`
 - check one additional source for learning lua and neovim configuration
-
-## Improvements
-
-- LSP servers config (.venv, .toml, ...)
-- attach keymaps only on specific ft, events, etc
 
 ## Code Companion
 

@@ -1,6 +1,6 @@
 return {
     "folke/todo-comments.nvim",
-    event = "BufReadPost",
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     ---@module 'todo-comments'
     ---@type TodoOptions

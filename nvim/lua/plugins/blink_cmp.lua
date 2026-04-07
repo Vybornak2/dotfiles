@@ -1,6 +1,6 @@
 return { -- Autocompletion
     "saghen/blink.cmp",
-    event = "VimEnter",
+    event = "LspAttach",
     version = "1.*",
     dependencies = {
         "rafamadriz/friendly-snippets",

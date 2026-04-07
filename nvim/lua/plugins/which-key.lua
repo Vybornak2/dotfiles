@@ -1,7 +1,7 @@
 return {
     -- Useful plugin to show you pending keybinds.
     "folke/which-key.nvim",
-    event = "VimEnter",
+    event = "VeryLazy",
     ---@module 'which-key'
     ---@type wk.Opts
     ---@diagnostic disable-next-line: missing-fields
