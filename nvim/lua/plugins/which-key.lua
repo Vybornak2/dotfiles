@@ -19,7 +19,6 @@ return {
             { "<leader>e", group = "[E]xplore", icon = "󰈙", mode = { "n" } },
             { "<leader>g", group = "[G]it", icon = "", mode = { "n", "v" } },
             { "<leader>n", group = "[N]eoVim", icon = "", mode = { "n", "v" } },
-            { "<leader>r", group = "[R]EPL", icon = "", mode = { "n", "v" } },
             { "<leader>s", group = "[S]earch", icon = "", mode = { "n", "v" } },
             { "<leader>t", group = "[T]oggle", icon = "", mode = { "n" } },
             { "<leader>u", group = "[U]tils", icon = "", mode = { "n" } },
