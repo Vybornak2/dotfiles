@@ -1,7 +1,8 @@
 return {
     "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-        enhanced_diff_hl = true, -- optional, but good for C++/Rust
+        enhanced_diff_hl = true,
     },
 }

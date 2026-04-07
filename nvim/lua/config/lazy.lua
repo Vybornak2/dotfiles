@@ -22,15 +22,25 @@ require("lazy").setup({
         { import = "plugins" },
 
     },
-    ---@type LazyConfig
-    opts = {
-        install = {
-            missing = true,
-            colorscheme = { "catppuccin" },
+    install = {
+        missing = true,
+        colorscheme = { "catppuccin" },
+    },
+    checker = {
+        enabled = true,
+    },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
         },
-        checker = {
-            enabled = true,
-        },
-
     },
 })
