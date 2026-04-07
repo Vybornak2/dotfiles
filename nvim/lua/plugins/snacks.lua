@@ -21,6 +21,7 @@ return {
                     { icon = "󰚰 ", key = "g", desc = "Neogit", action = ":Neogit" },
                     { icon = " ", key = "o", desc = "GitHub Repo", action = ":!gh repo view --web" },
                     { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+                    { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
                     { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
                     { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                 },

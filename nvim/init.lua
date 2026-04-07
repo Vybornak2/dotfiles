@@ -1,6 +1,4 @@
-vim.env.PATH = vim.fn.expand("~/.local/share/nvim/venv_py/bin") .. ":" .. vim.env.PATH
-vim.g.python3_host_prog = vim.fn.expand("~/.local/share/nvim/venv_py/bin/python")
-vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
+-- vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
 
 local require_mod = function(module)
     local ok, result = pcall(require, module)

@@ -50,10 +50,8 @@ return {
             basedpyright = {
                 settings = {
                     python = {
-                        venvPath = vim.fn.getcwd() .. "/.venv",
                         analysis = {
                             autoSearchPaths = true,
-                            useLibraryCodeForTypes = true,
                             diagnosticMode = "workspace",
                         },
                     },

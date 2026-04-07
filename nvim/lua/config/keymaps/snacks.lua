@@ -28,3 +28,9 @@ vim.keymap.set("n", "<leader>so", grep_open_files, { desc = "[O]pen Files" })
 vim.keymap.set("n", "<leader>sr", function() Snacks.picker.recent() end, { desc = "[R]ecent Files" })
 vim.keymap.set({ "n", "v" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "[W]ord" })
 vim.keymap.set("n", "<leader>s/", search_current_buffer, { desc = "[/] Current buffer" })
+
+vim.keymap.set("n", "<leader>st", function()
+    require("todo-comments")
+    Snacks.picker.todo_comments()
+end, { desc = "[T]odo/Notes" })
+
