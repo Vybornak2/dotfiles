@@ -11,21 +11,6 @@ export VISUAL="nvim"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""
 
-######################## Oh My Zsh #########################
-zstyle ':omz:update' mode auto # Keep Oh My Zsh updates automatic.
-zstyle ':omz:update' frequency 13
-
-plugins=(
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  sudo
-  python
-  zoxide
-)
-
-source "$ZSH/oh-my-zsh.sh"
-
 ####################### Prompt theme #######################
 [[ -r "$HOME/.powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$HOME/.powerlevel10k/powerlevel10k.zsh-theme"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -55,9 +40,24 @@ fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fp
 autoload -U compinit
 compinit -i
 
-#################### Python virtualenv #####################
+######################## Oh My Zsh #########################
+zstyle ':omz:update' mode auto # Keep Oh My Zsh updates automatic.
+zstyle ':omz:update' frequency 13
+
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  sudo
+  python
+  zoxide
+)
+
+# Python plugin settings
 PYTHON_AUTO_VRUN=true
 PYTHON_VENV_NAME=".venv"
+
+source "$ZSH/oh-my-zsh.sh"
 
 ######################## Shortcuts #########################
 alias hh='cd ~'
