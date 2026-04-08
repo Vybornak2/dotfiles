@@ -1,74 +1,66 @@
-# Bootstrap prompt rendering early.
+##################### Prompt bootstrap #####################
+# Load the prompt as early as possible so startup stays snappy.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Dotfiles root.
-DOTFILES_DIR="${${(%):-%N}:A:h}"
-
-# Shell framework.
+###################### Shell identity ######################
+typeset -U path PATH
+export EDITOR="nvim"
+export VISUAL="nvim"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""
-zstyle ':omz:update' mode auto      # update automatically without asking
+
+######################## Oh My Zsh #########################
+zstyle ':omz:update' mode auto # Keep Oh My Zsh updates automatic.
 zstyle ':omz:update' frequency 13
 
-# Plugins
 plugins=(
-	git
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	sudo
-	python
-	zoxide
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  sudo
+  python
+  zoxide
 )
 
 source "$ZSH/oh-my-zsh.sh"
 
-# Prompt theme.
+####################### Prompt theme #######################
 [[ -r "$HOME/.powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$HOME/.powerlevel10k/powerlevel10k.zsh-theme"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Environment.
-typeset -U path PATH
-export EDITOR="nvim"
-export VISUAL="nvim"
-
-# Kitty
-# NOTE: kitty needs to be installed here via `curl`
-export PATH="$HOME/.local/kitty.app/bin:$PATH"
-
-# Local user tools.
+######################## PATH setup ########################
+# Prefer the terminal app, local bins, and language toolchains before system paths.
+[[ -d "$HOME/.local/kitty.app/bin" ]] && path=("$HOME/.local/kitty.app/bin" $path)
 [[ -d "$HOME/.local/bin" ]] && path+=("$HOME/.local/bin")
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
-
-# Language and app toolchains.
 [[ -d "$HOME/.cargo/bin" ]] && path+=("$HOME/.cargo/bin")
 [[ -d "$HOME/.npm-global/bin" ]] && path+=("$HOME/.npm-global/bin")
 [[ -d "/opt/nvim-linux-x86_64/bin" ]] && path+=("/opt/nvim-linux-x86_64/bin")
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
+[ -s "$HOME/.nvm/bash_completion" ] && \. "$HOME/.nvm/bash_completion"
 
-# NVIM
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
-# Fuzzy finder
+################## External integrations ###################
+# fzf completion and key bindings.
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
-# FZF shortcuts
 export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git'
 
-# Autocompletion
+#################### Completion system #####################
 fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fpath)
 autoload -U compinit
 compinit -i
 
-# Directory shortcuts.
+#################### Python virtualenv #####################
+PYTHON_AUTO_VRUN=true
+PYTHON_VENV_NAME=".venv"
+
+######################## Shortcuts #########################
 alias hh='cd ~'
 alias dt='cd ~/Desktop'
 alias pr='cd ~/Projects'
-alias dotfiles='cd "$DOTFILES_DIR"'
 alias ipy='uv tool run ipython'
