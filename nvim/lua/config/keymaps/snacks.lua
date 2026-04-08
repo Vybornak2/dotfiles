@@ -12,6 +12,15 @@ local search_current_buffer = function()
     Snacks.picker.lines()
 end
 
+local search_hidden_files = function()
+    Snacks.picker.files({ hidden = true })
+end
+
+local search_todo_comments = function()
+    require("todo-comments")
+    Snacks.picker.todo_comments()
+end
+
 vim.keymap.set("n", "<leader>et", function() Snacks.explorer.open() end, { desc = "[T]oggle" })
 vim.keymap.set("n", "<leader>el", function() Snacks.explorer.reveal() end, { desc = "[R]eveal" })
 
@@ -19,6 +28,7 @@ vim.keymap.set("n", "<leader>sb", function() Snacks.picker.buffers() end, { desc
 vim.keymap.set("n", "<leader>sc", function() Snacks.picker.commands() end, { desc = "[C]ommands" })
 vim.keymap.set("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "[D]iagnostics" })
 vim.keymap.set("n", "<leader>sf", function() Snacks.picker.files() end, { desc = "[F]iles" })
+vim.keymap.set("n", "<leader>s.", search_hidden_files, { desc = "[.] Hidden Files)" })
 vim.keymap.set("n", "<leader>sg", function() Snacks.picker.git_files() end, { desc = "[G]it Files" })
 vim.keymap.set("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "[H]elp" })
 vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "[K]eymaps" })
@@ -28,9 +38,5 @@ vim.keymap.set("n", "<leader>so", grep_open_files, { desc = "[O]pen Files" })
 vim.keymap.set("n", "<leader>sr", function() Snacks.picker.recent() end, { desc = "[R]ecent Files" })
 vim.keymap.set({ "n", "v" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "[W]ord" })
 vim.keymap.set("n", "<leader>s/", search_current_buffer, { desc = "[/] Current buffer" })
-
-vim.keymap.set("n", "<leader>st", function()
-    require("todo-comments")
-    Snacks.picker.todo_comments()
-end, { desc = "[T]odo/Notes" })
+vim.keymap.set("n", "<leader>st", search_todo_comments, { desc = "[T]odo Comments" })
 

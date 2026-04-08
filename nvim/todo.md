@@ -4,7 +4,12 @@
 
 - codecompanion generate commit message doesn't work
 
-## Plugins, Keymaps
+## Keymaps
+
+- unstage hunk (GitSigns)
+- unstage buffer (GitSigns)
+
+## Plugins
 
 - nvim-dap 
 - undotree
