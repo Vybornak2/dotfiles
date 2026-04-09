@@ -7,7 +7,7 @@ if ! declare -F log_info >/dev/null 2>&1; then
 fi
 
 log_info "Verifying key tools"
-for cmd in zsh nvim code docker git rg fdfind lua luarocks kitty; do
+for cmd in zsh nvim code docker git rg fdfind lua luarocks kitty utftex; do
   if command -v "$cmd" >/dev/null 2>&1; then
     log_info "OK: $cmd"
   else

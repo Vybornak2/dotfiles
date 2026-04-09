@@ -25,6 +25,7 @@ MODULES=(
   "34-tools-extra-cli.sh"
   "35-tools-docker.sh"
   "36-tools-vscode.sh"
+  "37-tools-utftex.sh"
   "40-config-links.sh"
   "41-config-nvim-bootstrap.sh"
   "42-config-git.sh"

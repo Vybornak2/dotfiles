@@ -21,7 +21,7 @@ This document tracks the tools, package managers, and extension/plugin dependenc
 
 ## Core CLI tools installed by installer
 
-Source: `scripts/20-deps-core-packages.sh`, `scripts/30-tools-node.sh`, `scripts/31-tools-kitty.sh`, `scripts/34-tools-extra-cli.sh`, `scripts/35-tools-docker.sh`
+Source: `scripts/20-deps-core-packages.sh`, `scripts/30-tools-node.sh`, `scripts/31-tools-kitty.sh`, `scripts/34-tools-extra-cli.sh`, `scripts/35-tools-docker.sh`, `scripts/37-tools-utftex.sh`
 
 - Git: <https://git-scm.com/doc>
 - ripgrep (`rg`): <https://github.com/BurntSushi/ripgrep>
@@ -37,6 +37,7 @@ Source: `scripts/20-deps-core-packages.sh`, `scripts/30-tools-node.sh`, `scripts
 - Docker Compose plugin: <https://docs.docker.com/compose/>
 - wl-clipboard: <https://github.com/bugaevc/wl-clipboard>
 - xclip: <https://github.com/astrand/xclip>
+- libtexprintf / utftex: <https://github.com/bartp5/libtexprintf>
 
 ## Python tools installed via uv
 

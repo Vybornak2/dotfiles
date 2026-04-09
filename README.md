@@ -8,7 +8,7 @@ This repository provides:
 - Neovim setup (Kickstart-based config, plugin bootstrap, Mason tools)
 - Visual Studio Code setup (settings link + extension install)
 - Kitty terminal setup (config link, default terminal, Super+T shortcut)
-- Core CLI/language tooling (Rust, uv, Python tools, C/C++ toolchain)
+- Core CLI/language tooling (Rust, uv, Python tools, C/C++ toolchain, utftex)
 - Font setup (JetBrains Mono + Nerd Font)
 
 ## Repository layout
@@ -56,26 +56,27 @@ Run specific portions of the installer:
 
 Execution order is defined in `scripts/install.sh`:
 
-1. `10-setup-preflight.sh`
-2. `20-deps-core-packages.sh`
-3. `21-deps-cpp.sh`
-4. `22-deps-python.sh`
-5. `23-deps-rust.sh`
-6. `24-deps-lua.sh`
-7. `25-deps-fonts.sh`
-8. `30-tools-node.sh`
-9. `31-tools-kitty.sh`
-10. `32-tools-zsh.sh`
-11. `33-tools-nvim.sh`
-12. `34-tools-extra-cli.sh`
-13. `35-tools-docker.sh`
-14. `36-tools-vscode.sh`
-15. `40-config-links.sh`
-16. `41-config-nvim-bootstrap.sh`
-17. `42-config-git.sh`
-18. `43-config-terminal.sh`
-19. `50-verify.sh`
-20. `51-cleanup.sh`
+- `10-setup-preflight.sh`
+- `20-deps-core-packages.sh`
+- `21-deps-cpp.sh`
+- `22-deps-python.sh`
+- `23-deps-rust.sh`
+- `24-deps-lua.sh`
+- `25-deps-fonts.sh`
+- `30-tools-node.sh`
+- `31-tools-kitty.sh`
+- `32-tools-zsh.sh`
+- `33-tools-nvim.sh`
+- `34-tools-extra-cli.sh`
+- `35-tools-docker.sh`
+- `36-tools-vscode.sh`
+- `37-tools-utftex.sh`
+- `40-config-links.sh`
+- `41-config-nvim-bootstrap.sh`
+- `42-config-git.sh`
+- `43-config-terminal.sh`
+- `50-verify.sh`
+- `51-cleanup.sh`
 
 ## Documentation
 
