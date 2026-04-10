@@ -21,7 +21,7 @@ return {
                         chat_context = "📎️",
                     },
                     -- show_settings = true,
-                    fold_reasoning = false,
+                    fold_reasoning = true,
                     show_reasoning = true,
                 },
                 diff = {
@@ -38,12 +38,18 @@ return {
             -- },
             adapters = {
                 http = {
+                    qwen_inline = function()
+                        return require("codecompanion.adapters").extend("ollama", {
+                            name = "qwen_inline",
+                            schema = {
+                                model = { default = "qwen2.5-coder:7b" },
+                            },
+                        })
+                    end,
                     copilot_chat = function()
                         return require("codecompanion.adapters").extend("copilot", {
                             schema = {
                                 model = { default = "gpt-5-mini" },
-                                max_tokens = { default = 8192 },
-                                temperature = { default = 0.4 },
                             },
                         })
                     end,
@@ -51,8 +57,6 @@ return {
                         return require("codecompanion.adapters").extend("copilot", {
                             schema = {
                                 model = { default = "gpt-4.1" },
-                                max_tokens = { default = 1024 },
-                                temperature = { default = 0.0 },
                             },
                         })
                     end,
@@ -68,9 +72,7 @@ return {
                                 GEMINI_MODEL = "gemini-2.5-flash",
                             },
                             schema = {
-                                model = {
-                                    default = "gemini-2.5-flash",
-                                },
+                                model = { default = "gemini-2.5-flash" },
                             },
                         })
                     end,
@@ -86,12 +88,7 @@ return {
                                 GEMINI_MODEL = "gemini-2.5-pro",
                             },
                             schema = {
-                                model = {
-                                    default = "gemini-2.5-pro",
-                                },
-                                temperature = { default = 0.7 },
-                                max_tokens = { default = 8192 },
-                                top_p = { default = 0.95 },
+                                model = { default = "gemini-2.5-pro" },
                             },
                         })
                     end,
@@ -100,17 +97,6 @@ return {
                             schema = {
                                 model = { default = "gemini-2.5-flash" },
                                 auth_method = { default = "gemini-api-key" },
-                                --[[ Defaults
-									model: gemini-2.5-flash
-									max_tokens: null
-									temperature: null
-									top_p: null
-									reasoning_effort: high
-									auth_method: gemini-api-key
-								--]]
-                                temperature = { default = 0.7 },
-                                max_tokens = { default = 8192 },
-                                top_p = { default = 0.95 },
                             },
                             env = {
                                 api_key = "cmd:secret-tool lookup name gemini_api_key_free",
@@ -122,9 +108,6 @@ return {
                             schema = {
                                 model = { default = "gemini-2.5-flash" },
                                 auth_method = { default = "gemini-api-key" },
-                                temperature = { default = 0.0 },
-                                max_tokens = { default = 4096 }, -- Shorter for inline diffs
-                                top_p = { default = 1.0 },
                             },
                             env = {
                                 api_key = "cmd:secret-tool lookup name gemini_api_key_free",
@@ -142,7 +125,8 @@ return {
                 },
                 inline = {
                     -- adapter = "gemini_inline_free",
-                    adapter = "copilot_inline",
+                    -- adapter = "copilot_inline",
+                    adapter = "qwen_inline",
                 },
                 cli = {
                     agent = "copilot",
