@@ -59,10 +59,21 @@ return {
             },
             -- Rust
             rust_analyzer = {
+                capabilities = {
+                    offsetEncoding = { "utf-16" },
+                },
                 settings = {
                     ["rust-analyzer"] = {
-                        cargo = { allFeatures = true },
-                        checkOnSave = { command = "clippy" },
+                        checkOnSave = {
+                            enable = true,
+                            command = "clippy",
+                        },
+                        cargo = {
+                            allFeatures = true,
+                        },
+                        procMacro = {
+                            enable = true,
+                        },
                     },
                 },
             },

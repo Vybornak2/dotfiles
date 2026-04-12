@@ -35,11 +35,6 @@ export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix --hidden --follow
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git'
 
-#################### Completion system #####################
-fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fpath)
-autoload -U compinit
-compinit -i
-
 ######################## Oh My Zsh #########################
 zstyle ':omz:update' mode auto # Keep Oh My Zsh updates automatic.
 zstyle ':omz:update' frequency 13
@@ -57,10 +52,24 @@ plugins=(
 PYTHON_AUTO_VRUN=true
 PYTHON_VENV_NAME=".venv"
 
-source "$ZSH/oh-my-zsh.sh"
-
 ######################## Shortcuts #########################
 alias hh='cd ~'
 alias dt='cd ~/Desktop'
 alias pr='cd ~/Projects'
 alias ipy='uv tool run ipython'
+alias ai='ollama run qwen2.5-coder:7b'
+
+#################### Completion system #####################
+fpath=(~/.zsh/completions $fpath)
+fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fpath)
+
+eval "$(uv generate-shell-completion zsh)"
+
+# TODO: this is not working and needs a fix
+eval "$(maturin completions zsh)"
+# compdef _maturin maturin
+
+source "$ZSH/oh-my-zsh.sh"
+
+autoload -U compinit
+compinit -i

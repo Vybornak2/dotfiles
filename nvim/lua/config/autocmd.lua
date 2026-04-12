@@ -2,9 +2,9 @@
 
 -- Diagnostic config. See `:help vim.diagnostic.Opts`
 vim.diagnostic.config({
+    virtual_text = true,
     float = { border = "rounded", source = "if_many" },
-    underline = { severity = { min = 2 } }, -- 2 is the shorthand for 'WARN'
-    jump = { on_jump = function() vim.diagnostic.open_float({ focus = false }) end },
+    underline = { severity = { min = vim.diagnostic.severity.WARN } },
 })
 
 -- Highlight text on yank. See `:help vim.hl.on_yank()`

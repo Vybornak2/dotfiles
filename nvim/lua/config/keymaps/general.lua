@@ -18,6 +18,13 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 -- [[ Diagnostics ]]
 vim.keymap.set("n", "<leader>td", vim.diagnostic.setloclist, { desc = "[D]iagnostics" })
+vim.keymap.set("n", "L", function()
+  vim.diagnostic.open_float({
+    scope = "line",      -- Show all errors on the current line
+    focusable = false,   -- Let's you keep typing/moving without getting stuck in the window
+    border = "rounded",  -- Looks better on modern terminals like Kitty
+  })
+end, { desc = "Line Diagnostics" })
 
 --[[ Neovim ]]
 vim.keymap.set("n", "<leader>nr", function()
