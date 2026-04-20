@@ -125,8 +125,8 @@ return {
                 },
                 inline = {
                     -- adapter = "gemini_inline_free",
-                    -- adapter = "copilot_inline",
-                    adapter = "qwen_inline",
+                    adapter = "copilot_inline",
+                    -- adapter = "qwen_inline",
                 },
                 cli = {
                     agent = "copilot",

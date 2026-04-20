@@ -13,6 +13,22 @@ return {
         },
     },
     config = function()
+        vim.diagnostic.config({
+            virtual_text = {
+                format = function(_) return "" end,
+            },
+            float = {
+                focusable = true,
+                style = "minimal",
+                border = "rounded",
+                source = true,
+                header = "",
+                prefix = "",
+            },
+            underline = { severity = { min = vim.diagnostic.severity.WARN } },
+            severity_sort = true,
+        })
+
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
             callback = function(event)
