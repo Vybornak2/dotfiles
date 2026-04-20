@@ -41,6 +41,7 @@ zstyle ':omz:update' frequency 13
 
 plugins=(
   git
+  fzf
   zsh-autosuggestions
   zsh-syntax-highlighting
   sudo
@@ -52,7 +53,7 @@ plugins=(
 PYTHON_AUTO_VRUN=true
 PYTHON_VENV_NAME=".venv"
 
-######################## Shortcuts #########################
+######################### Aliases ##########################
 alias hh='cd ~'
 alias dt='cd ~/Desktop'
 alias pr='cd ~/Projects'
@@ -64,12 +65,15 @@ fpath=(~/.zsh/completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fpath)
 
 eval "$(uv generate-shell-completion zsh)"
-
-# TODO: this is not working and needs a fix
 eval "$(maturin completions zsh)"
-# compdef _maturin maturin
 
-source "$ZSH/oh-my-zsh.sh"
+source "$ZSH/oh-my-zsh.sh" #!!! THIS MUST BE SOURCED AFTER PLUGINS ARE DEFINED !!!
 
 autoload -U compinit
 compinit -i
+
+######################### Keybinds #########################
+
+bindkey '^@' menu-select # Ctrl+Space triggers the menu
+bindkey '^[t' autosuggest-accept # Alt+t accepts autosuggestions
+
