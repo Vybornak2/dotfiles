@@ -57,12 +57,12 @@ end, { desc = "[D]ocsrting" })
 
 -- [[ Center text with symbols ]]
 vim.api.nvim_create_user_command("Wrap", function(opts)
-  -- 1. Parse arguments (defaults: symbol='#', width=80)
-  local fargs = opts.fargs
+  -- 1. Parse arguments (defaults: width=80, symbol='#')
+  local fargs = opts.fargs or {}
+  local total_width = tonumber(fargs[1]) or 80
+  local provided = vim.trim(fargs[2] or "")
   local commentstring = vim.bo.commentstring or '# %s'
-  local symbol = commentstring:match('^(.-)%%s') or '#'
-  symbol = vim.trim(symbol)
-  local total_width = tonumber(fargs[2]) or 80
+  local symbol = provided ~= "" and provided or vim.trim(commentstring:match('^(.-)%%s') or '#')
   local space_around_text = 1
 
   -- 2. Get and trim the current line
@@ -92,5 +92,5 @@ vim.api.nvim_create_user_command("Wrap", function(opts)
   vim.api.nvim_set_current_line(new_line)
 end, {
   nargs = "*",
-  desc = "Center text and wrap with symbols: :Wrap <symbol> <width>",
+  desc = "Center text and wrap with symbols: :Wrap <width> <symbol>",
 })
