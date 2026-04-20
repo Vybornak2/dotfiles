@@ -2,9 +2,19 @@
 
 -- Diagnostic config. See `:help vim.diagnostic.Opts`
 vim.diagnostic.config({
-    virtual_text = true,
-    float = { border = "rounded", source = "if_many" },
+    virtual_text = {
+        format = function(_) return "" end,
+    },
+    float = {
+        focusable = true,
+        style = "minimal",
+        border = "rounded",
+        source = true,
+        header = "",
+        prefix = "",
+    },
     underline = { severity = { min = vim.diagnostic.severity.WARN } },
+    severity_sort = true,
 })
 
 -- Highlight text on yank. See `:help vim.hl.on_yank()`

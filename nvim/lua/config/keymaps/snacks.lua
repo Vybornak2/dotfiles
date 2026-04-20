@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader>bdA", function() Snacks.bufdelete.all() end, { desc
 vim.keymap.set("n", "<leader>be", function() Snacks.scratch() end, { desc = "[E]mpty" })
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "[N]ext" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "[P]rev" })
-vim.keymap.set("n", "<leader>bc", "<C-6>", { desc = "[C]ycle" })
+vim.keymap.set("n", "<leader>bb", "<C-6>", { desc = "[B]ack" })
 vim.keymap.set("n", "<leader>bs", function() Snacks.picker.buffers() end, { desc = "[S]earch" })
 vim.keymap.set("n", "<leader>br", function()
     Snacks.picker.buffers({ sort_lastused = true })
