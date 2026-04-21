@@ -12,3 +12,7 @@ end, { desc = "Reload" })
 
 vim.keymap.set("n", "<leader>UL", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set("n", "<leader>UM", "<cmd>Mason<cr>", { desc = "Mason" })
+
+vim.keymap.set("n", "<leader>UC", function() 
+  Snacks.picker.colorschemes() 
+end, { desc = "ColorSchemes" })
