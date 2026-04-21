@@ -18,5 +18,6 @@ return {
     },
     { "folke/tokyonight.nvim", priority = 1000 },
     { "Mofiqul/dracula.nvim",  priority = 1000 },
-    { "Mofiqul/vscode.nvim",    priority = 1000 },
+    { "Mofiqul/vscode.nvim",   priority = 1000 },
+    { "olimorris/onedarkpro.nvim", priority = 1000 },
 }
