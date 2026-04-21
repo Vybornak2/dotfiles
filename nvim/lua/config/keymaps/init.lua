@@ -1,11 +1,14 @@
 local modules = {
+    "config.keymaps.ai",
+    "config.keymaps.buffers",
+    "config.keymaps.code",
     "config.keymaps.general",
-    "config.keymaps.codecompanion",
-    "config.keymaps.copilot",
     "config.keymaps.git",
     "config.keymaps.lsp",
-    "config.keymaps.persistence",
-    "config.keymaps.snacks",
+    "config.keymaps.quit_session",
+    "config.keymaps.search",
+    "config.keymaps.tabs",
+    "config.keymaps.windows",
 }
 
 for _, name in ipairs(modules) do

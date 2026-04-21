@@ -1,4 +1,4 @@
---[[Persistence keymaps]]
+--[[ Quit / Session ]]
 
 ---@diagnostic disable-next-line: unused-local, unused-function
 local clean_empty_buffers = function()
@@ -25,7 +25,6 @@ end, { desc = "Last load" })
 vim.keymap.set("n", "<leader>usL", function()
     require("persistence").load()
 end, { desc = "Load for CWD" })
-
 
 vim.keymap.set("n", "<leader>usx", function()
     require("persistence").stop()
