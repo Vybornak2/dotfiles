@@ -18,4 +18,4 @@ end, { desc = "Dismiss Copilot suggestion" })
 
 vim.keymap.set("n", "<leader>tc", function()
 	require("copilot.suggestion").toggle_auto_trigger()
-end, { desc = "[C]opilot Suggestions" })
+end, { desc = "Copilot Suggestions" })

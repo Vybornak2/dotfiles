@@ -17,7 +17,7 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- [[ Diagnostics ]]
-vim.keymap.set("n", "<leader>td", vim.diagnostic.setloclist, { desc = "[D]iagnostics" })
+vim.keymap.set("n", "<leader>td", vim.diagnostic.setloclist, { desc = "Diagnostics" })
 vim.keymap.set("n", "L", function()
     vim.diagnostic.open_float({
         scope = "line",
@@ -33,15 +33,15 @@ vim.keymap.set("n", "<leader>nr", function()
     end
     dofile(vim.env.MYVIMRC)
     vim.notify("Config Reloaded!")
-end, { desc = "[R]eload" })
-vim.keymap.set("n", "<leader>nl", "<cmd>Lazy<cr>", { desc = "[L]azy" })
-vim.keymap.set("n", "<leader>nm", "<cmd>Mason<cr>", { desc = "[M]ason" })
+end, { desc = "Reload" })
+vim.keymap.set("n", "<leader>nl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+vim.keymap.set("n", "<leader>nm", "<cmd>Mason<cr>", { desc = "Mason" })
 
 
 --[[ Utils ]]
 vim.keymap.set("n", "<leader>ur", function()
     vim.cmd("edit!")
-end, { desc = "[R]eload" })
+end, { desc = "Reload" })
 
 --[[ Conform ]]
 vim.keymap.set("", "<leader><leader>", function()
@@ -51,7 +51,7 @@ end, { desc = "Format buffer" })
 --[[ NeoGen ]]
 vim.keymap.set("n", "<leader>cd", function()
     require("neogen").generate()
-end, { desc = "[D]ocsrting" })
+end, { desc = "Docsrting" })
 
 -- [[ Center text with symbols ]]
 vim.api.nvim_create_user_command("Wrap", function(opts)
