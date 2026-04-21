@@ -18,6 +18,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			function() Snacks.picker.lsp_implementations() end,
 			{ buffer = buf, desc = "Goto Implementation" })
 
+		vim.keymap.set("n", "gI",
+			function() Snacks.picker.lsp_implementations() end,
+			{ buffer = buf, desc = "Goto Implementation" })
+
 		vim.keymap.set("n", "grd",
 			function() Snacks.picker.lsp_definitions() end,
 			{ buffer = buf, desc = "Goto Definition" })
@@ -41,7 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Inlay hints toggle (only if supported by the language server)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client:supports_method("textDocument/inlayHint", buf) then
-			vim.keymap.set("n", "<leader>th",
+			vim.keymap.set("n", "<leader>uh",
 				function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf })) end,
 				{ buffer = buf, desc = "Inlay Hints" })
 		end

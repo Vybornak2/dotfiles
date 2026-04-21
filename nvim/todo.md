@@ -1,13 +1,18 @@
 # TODOs
 
+## Review against LazyVim
+
+- improve search
+
 ## Bugs
 
 - codecompanion generate commit message doesn't work
 
 ## Keymaps
 
-- unstage hunk (GitSigns)
-- unstage buffer (GitSigns)
+- add debug keymaps
+- implement UI keymaps
+- implemnet code keymaps
 
 ## Plugins
 

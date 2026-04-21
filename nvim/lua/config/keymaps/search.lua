@@ -30,7 +30,7 @@ vim.keymap.set("n", "<leader>sg", function() Snacks.picker.git_files() end, { de
 vim.keymap.set("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "Help" })
 vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
 vim.keymap.set("n", "<leader>sl", function() Snacks.picker.grep() end, { desc = "Live grep" })
-vim.keymap.set("n", "<leader>sn", find_config_files, { desc = "Neovim files" })
+vim.keymap.set("n", "<leader>sn", find_config_files, { desc = "Neovim Files" })
 vim.keymap.set("n", "<leader>so", grep_open_files, { desc = "Open Files" })
 vim.keymap.set("n", "<leader>sr", function() Snacks.picker.recent() end, { desc = "Recent Files" })
 vim.keymap.set({ "n", "v" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Word" })

@@ -38,3 +38,6 @@ end, {
     nargs = "*",
     desc = "Center text and wrap with symbols: :Wrap <width> <symbol>",
 })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])

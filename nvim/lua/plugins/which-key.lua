@@ -9,27 +9,24 @@ return {
         -- delay between pressing a key and opening which-key (milliseconds)
         delay = 0,
         icons = { mappings = vim.g.have_nerd_font },
+        preset = "helix",
 
         -- Document existing key chains
         spec = {
-            { "<leader>a", group = "AI", mode = { "n", "v" } },
-            { "<leader>ac", group = "CLI", mode = { "n", "v" } },
 
-            { '<leader>b', group = 'Buffer', mode = { 'n', 'v' } },
-            { '<leader>bd', group = 'Delete', mode = { 'n', 'v' } },
+            { "<leader>a",     group = "AI",           mode = { "n", "v" }, icon = "🧠" },
+            { "<leader>ac",    group = "CLI",          mode = { "n", "v" } },
+            { "<leader><tab>", group = "Tabs",         mode = { "n", "v" } },
+            { "<leader>b",     group = "Buffers",      mode = { "n", "v" } },
+            { "<leader>c",     group = "Code",         mode = { "n", "v" } },
+            { "<leader>g",     group = "Git",          mode = { "n", "v" } },
+            { "<leader>s",     group = "Search",       mode = { "n", "v" } },
+            { "<leader>q",     group = "Quit/Session", mode = { "n" } },
+            { "<leader>u",     group = "UI",           mode = { "n" } },
+            { "<leader>U",     group = "Utils",        mode = { "n" }, icon = "⚙️" },
+            { "<leader>w",     group = "Windows",      mode = { "n" } },
 
-            { "<leader>c", group = "Code", mode = { "n", "v" } },
-            { "<leader>cn", group = "Neogen", mode = { "n", "v" } },
-
-            { "<leader>g", group = "Git", mode = { "n", "v" } },
-            { "<leader>n", group = "NeoVim", mode = { "n", "v" } },
-            { "<leader>s", group = "Search", mode = { "n", "v" } },
-            { "<leader>t", group = "Toggle", mode = { "n" } },
-
-            { "<leader>u", group = "Utils", mode = { "n" } },
-            { "<leader>us", group = "Session", mode = { "n" } },
-
-            { "gr", group = "LSP Actions", mode = { "n" } },
+            { "gr",            group = "LSP Actions",  mode = { "n" } },
         },
     },
 }

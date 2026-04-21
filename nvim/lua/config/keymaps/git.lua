@@ -81,15 +81,6 @@ vim.keymap.set("n", "<leader>gb", function()
     require("gitsigns").blame_line({ full = true })
 end, { desc = "Blame line" })
 
--- Toggle options
-vim.keymap.set("n", "<leader>tb", function()
-    require("gitsigns").toggle_current_line_blame()
-end, { desc = "Git Blame" })
-
-vim.keymap.set("n", "<leader>tw", function()
-    require("gitsigns").toggle_word_diff()
-end, { desc = "Word diff" })
-
 -- Diffview
 vim.keymap.set("n", "<leader>gv", function()
     ---@diagnostic disable-next-line

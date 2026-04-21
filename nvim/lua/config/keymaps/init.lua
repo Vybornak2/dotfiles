@@ -8,6 +8,8 @@ local modules = {
     "config.keymaps.quit_session",
     "config.keymaps.search",
     "config.keymaps.tabs",
+    "config.keymaps.utils",
+    "config.keymaps.ui",
     "config.keymaps.windows",
 }
 
