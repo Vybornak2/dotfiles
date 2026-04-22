@@ -1,5 +1,5 @@
 return {
-	"folke/persistence.nvim",
-	event = "VimEnter",
-	opts = {},
+    "folke/persistence.nvim",
+    event = "VimEnter",
+    opts = {},
 }

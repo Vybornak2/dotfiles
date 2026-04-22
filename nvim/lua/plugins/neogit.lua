@@ -1,9 +1,9 @@
 return {
-	"NeogitOrg/neogit",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
+    "NeogitOrg/neogit",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
         "sindrets/diffview.nvim",
-	},
-	cmd = "Neogit",
-	opts = {},
+    },
+    cmd = "Neogit",
+    opts = {},
 }

@@ -4,7 +4,7 @@ return {
         name = "catppuccin",
         priority = 1000,
         opts = {
-            compile_path = vim.fn.stdpath "cache" .. "/catppuccin",
+            compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
             flavour = "mocha",
             -- compile = {
             --     enabled = true,
@@ -13,7 +13,7 @@ return {
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
-            vim.cmd.colorscheme "catppuccin"
+            vim.cmd.colorscheme("catppuccin")
         end,
     },
     { "folke/tokyonight.nvim", lazy = true },

@@ -1,6 +1,6 @@
 return {
-    'windwp/nvim-autopairs',
+    "windwp/nvim-autopairs",
     event = "VeryLazy",
     config = true,
-    opts = {}
+    opts = {},
 }
