@@ -14,6 +14,7 @@ vim.opt.expandtab = true
 -- Line numbers and UI
 vim.o.number = true
 vim.g.have_nerd_font = true
+vim.o.winborder = "rounded"
 
 -- vim.o.relativenumber = true
 vim.o.signcolumn = "yes"

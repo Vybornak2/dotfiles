@@ -2,12 +2,32 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+        "saghen/blink.cmp",
         "mason-org/mason.nvim",
     },
     config = function()
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
+        local methods = vim.lsp.protocol.Methods
+        local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+
+        local function has_document_highlight_client(bufnr, excluding_client_id)
+            for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+                if
+                    client.id ~= excluding_client_id
+                    and client:supports_method(methods.textDocument_documentHighlight, bufnr)
+                then
+                    return true
+                end
+            end
+
+            return false
+        end
+
         vim.diagnostic.config({
             virtual_text = {
-                format = function(_) return "" end,
+                format = function(_)
+                    return ""
+                end,
             },
             float = {
                 focusable = true,
@@ -26,8 +46,9 @@ return {
             callback = function(event)
                 -- Highlight references under the cursor after a delay; highlights clear on cursor move.
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
-                if client and client:supports_method("textDocument/documentHighlight", event.buf) then
-                    local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+                if client and client:supports_method(methods.textDocument_documentHighlight, event.buf) then
+                    vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event.buf })
+
                     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                         buffer = event.buf,
                         group = highlight_augroup,
@@ -41,10 +62,18 @@ return {
                     })
 
                     vim.api.nvim_create_autocmd("LspDetach", {
-                        group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+                        buffer = event.buf,
+                        group = highlight_augroup,
                         callback = function(event2)
-                            vim.lsp.buf.clear_references()
-                            vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+                            if has_document_highlight_client(event2.buf, event2.data.client_id) then
+                                return
+                            end
+
+                            if vim.api.nvim_buf_is_valid(event2.buf) then
+                                vim.api.nvim_buf_call(event2.buf, vim.lsp.buf.clear_references)
+                            end
+
+                            vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event2.buf })
                         end,
                     })
                 end
@@ -130,6 +159,7 @@ return {
         }
 
         for name, server in pairs(servers) do
+            server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
             vim.lsp.config(name, server)
             vim.lsp.enable(name)
         end

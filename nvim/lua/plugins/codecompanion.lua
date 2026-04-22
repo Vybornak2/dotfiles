@@ -144,17 +144,5 @@ return {
                 },
             },
         })
-
-        -- Autocmd: Unlist codecompanion buffers (if desired)
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = {
-                "codecompanion",
-                "CodeCompanion",
-            },
-            callback = function(args)
-                vim.bo[args.buf].buflisted = false
-                vim.bo[args.buf].bufhidden = "wipe"
-            end,
-        })
     end,
 }

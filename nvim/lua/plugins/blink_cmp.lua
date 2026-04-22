@@ -20,26 +20,32 @@ return { -- Autocompletion
         },
 
         completion = {
-            keyword = { range = 'full' },
+            keyword = { range = "full" },
             trigger = {
                 prefetch_on_insert = true,
+                show_on_trigger_character = true,
             },
             ghost_text = {
                 enabled = false,
             },
             documentation = {
-                auto_show = false,
-                auto_show_delay_ms = 500
+                auto_show = true,
+                auto_show_delay_ms = 500,
             },
             menu = {
                 auto_show = true,
-                auto_show_delay_ms = 500,
+                auto_show_delay_ms = function(ctx)
+                    if ctx.trigger and ctx.trigger.initial_kind == "trigger_character" then
+                        return 0
+                    end
+                    return 500
+                end,
                 draw = {
                     columns = {
-                        { "label",     "label_description", gap = 1 },
-                        { "kind_icon", "kind" }
+                        { "label", "label_description", gap = 1 },
+                        { "kind_icon", "kind" },
                     },
-                }
+                },
             },
         },
 
