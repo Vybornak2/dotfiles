@@ -28,15 +28,4 @@ return {
 			},
 		},
 	},
-	config = function()
-		require("mason-tool-installer").setup({
-			ensure_installed = {
-				"ruff",
-				"isort",
-				"stylua",
-				"rustfmt",
-				"clang-format",
-			},
-		})
-	end,
 }

@@ -2,15 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-        "mason-org/mason-lspconfig.nvim",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        {
-            "mason-org/mason.nvim",
-            ---@module 'mason.settings'
-            ---@type MasonSettings
-            ---@diagnostic disable-next-line: missing-fields
-            opts = {},
-        },
+        "mason-org/mason.nvim",
     },
     config = function()
         vim.diagnostic.config({
@@ -136,9 +128,6 @@ return {
             cmake = {},
             dockerls = {},
         }
-
-        local ensure_installed = vim.tbl_keys(servers or {})
-        require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
         for name, server in pairs(servers) do
             vim.lsp.config(name, server)
