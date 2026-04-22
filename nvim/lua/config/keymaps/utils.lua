@@ -1,6 +1,8 @@
 --[[ Utils ]]
---
-vim.keymap.set("n", "<leader>UR", function()
+
+map = vim.keymap.set
+
+map("n", "<leader>UR", function()
     for name, _ in pairs(package.loaded) do
         if name:match("^plugins") or name:match("^config") then
             package.loaded[name] = nil
@@ -10,9 +12,9 @@ vim.keymap.set("n", "<leader>UR", function()
     vim.notify("Config Reloaded!")
 end, { desc = "Reload" })
 
-vim.keymap.set("n", "<leader>UL", "<cmd>Lazy<cr>", { desc = "Lazy" })
-vim.keymap.set("n", "<leader>UM", "<cmd>Mason<cr>", { desc = "Mason" })
+map("n", "<leader>UL", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>UM", "<cmd>Mason<cr>", { desc = "Mason" })
 
-vim.keymap.set("n", "<leader>UC", function() 
-  Snacks.picker.colorschemes() 
+map("n", "<leader>UC", function()
+    Snacks.picker.colorschemes()
 end, { desc = "ColorSchemes" })

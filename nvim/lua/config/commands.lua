@@ -5,14 +5,16 @@ vim.api.nvim_create_user_command("Wrap", function(opts)
     local fargs = opts.fargs or {}
     local total_width = tonumber(fargs[1]) or 80
     local provided = vim.trim(fargs[2] or "")
-    local commentstring = vim.bo.commentstring or '# %s'
-    local symbol = provided ~= "" and provided or vim.trim(commentstring:match('^(.-)%%s') or '#')
+    local commentstring = vim.bo.commentstring or "# %s"
+    local symbol = provided ~= "" and provided or vim.trim(commentstring:match("^(.-)%%s") or "#")
     local space_around_text = 1
 
     -- 2. Get and trim the current line
     local line = vim.api.nvim_get_current_line()
     local text = vim.trim(line)
-    if text == "" then return end
+    if text == "" then
+        return
+    end
 
     -- 3. Math for centering
     local text_len = #text + (space_around_text * 2)

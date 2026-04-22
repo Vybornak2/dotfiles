@@ -27,7 +27,7 @@ map("n", "<leader>br", function()
     Snacks.picker.buffers({ sort_lastused = true })
 end, { desc = "Recent Buffers" })
 
-vim.keymap.set("n", "<leader>bR", function()
+map("n", "<leader>bR", function()
     vim.cmd("edit!")
 end, { desc = "Reload" })
 
