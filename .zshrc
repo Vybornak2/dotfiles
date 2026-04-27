@@ -77,5 +77,5 @@ compinit -i
 ######################### Keybinds #########################
 
 bindkey '^@' menu-select # Ctrl+Space triggers the menu
-bindkey '^[t' autosuggest-accept # Alt+t accepts autosuggestions
+bindkey '^[y' autosuggest-accept # Alt+y accepts autosuggestions
 
