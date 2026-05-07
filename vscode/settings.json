@@ -1,0 +1,160 @@
+{
+    // ==================================================
+    // PYLANCE SETTINGS - LANGUAGE SERVER, TYPE CHECKING
+    // ==================================================
+    "python.analysis.languageServerMode": "full",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.importFormat": "relative",
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.pytestParameters": true,
+    "python.analysis.autoFormatStrings": true,
+    // "python.analysis.include": [],
+    // "python.analysis.exclude": [],
+    // "python.analysis.extraPaths": [],
+    // ==================================================
+    // PYTHON TESTING
+    // ==================================================
+    // "python.testing.autoTestDiscoverOnSaveEnabled": true, // default is true
+    // "python.testing.cwd": "${workspaceFolder}/tests",
+    // "python.testing.pytestPath": "${workspaceFolder}/.venv/bin/pytest",
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    // ==================================================
+    // GENERAL SETTINGS
+    // ==================================================
+    "files.autoSave": "onFocusChange",
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "window.commandCenter": false,
+    "explorer.excludeGitIgnore": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+        "source.fixAll": "always",
+        "source.convertImportFormat": "always",
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.settings.editor": "json",
+    "workbench.tree.indent": 25,
+    "workbench.colorTheme": "Default Dark+",
+    "files.exclude": {
+        ".git": true,
+        "**/.git": false
+    },
+    // ==================================================
+    // NOTEBOOK SETTINGS
+    // ==================================================
+    "notebook.defaultFormatter": "charliermarsh.ruff",
+    "notebook.formatOnCellExecution": true,
+    "notebook.formatOnSave.enabled": true,
+    "jupyter.askForKernelRestart": false,
+    // ==================================================
+    // COPILOT
+    // ==================================================
+    "chat.viewSessions.orientation": "stacked",
+    "inlineChat.enableV2": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "python": true,
+        "yaml": true,
+        "rust": false
+    },
+    // ==================================================
+    // GIT, GITHUB
+    // ==================================================
+    "githubPullRequests.pullBranch": "never",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    // ==================================================
+    // VIM
+    // ==================================================
+    "vim.foldfix": true,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "r"
+            ],
+            "commands": [
+                "editor.action.formatDocument",
+                "notebook.formatCell"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "jupyter.execSelectionInteractive",
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "E"
+            ],
+            "commands": [
+                "python.execSelectionInTerminal",
+            ]
+        }
+    ],
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false,
+        "<C-p>": false,
+        "<C-i>": false
+    },
+    // ==================================================
+    // RUFF
+    // ==================================================
+    "ruff.enable": true,
+    "ruff.importStrategy": "useBundled",
+    "ruff.lint.select": [
+        "E",
+        "W",
+        "F",
+        "D",
+        "C90",
+        "SIM",
+        "PL",
+        "B",
+        "S",
+        "I",
+        "Q",
+        "N",
+        "TD",
+        "T20"
+    ],
+    // ==================================================
+    // FORMATTERS
+    // ==================================================
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    // ==================================================
+    // OTHER
+    // ==================================================
+    "autoDocstring.docstringFormat": "google",
+    "better-comments.multilineComments": true
+}
