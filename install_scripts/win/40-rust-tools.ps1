@@ -1,1 +1,0 @@
-cargo install tree-sitter-cli
