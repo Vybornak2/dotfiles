@@ -58,6 +58,11 @@ map("n", "<leader>sl", function()
 end, { desc = "Live grep" })
 
 map("n", "<leader>sn", find_config_files, { desc = "Neovim Files" })
+
+map("n", "<leader>sm", function()
+    Snacks.picker.marks()
+end, { desc = "Marks" })
+
 map("n", "<leader>so", grep_open_files, { desc = "Open Files" })
 
 map("n", "<leader>sr", function()
