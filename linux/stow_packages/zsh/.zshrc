@@ -1,5 +1,4 @@
 ##################### Prompt bootstrap #####################
-# Load the prompt as early as possible so startup stays snappy.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -16,27 +15,39 @@ ZSH_THEME=""
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 ######################## PATH setup ########################
-# Prefer the terminal app, local bins, and language toolchains before system paths.
-[[ -d "$HOME/.local/kitty.app/bin" ]] && path=("$HOME/.local/kitty.app/bin" $path)
 [[ -d "$HOME/.local/bin" ]] && path+=("$HOME/.local/bin")
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 [[ -d "$HOME/.cargo/bin" ]] && path+=("$HOME/.cargo/bin")
 [[ -d "$HOME/.npm-global/bin" ]] && path+=("$HOME/.npm-global/bin")
-[[ -d "/opt/nvim-linux-x86_64/bin" ]] && path+=("/opt/nvim-linux-x86_64/bin")
 [ -s "$HOME/.nvm/nvm.sh" ] && \. "$HOME/.nvm/nvm.sh"
-[ -s "$HOME/.nvm/bash_completion" ] && \. "$HOME/.nvm/bash_completion"
 
-################## External integrations ###################
-# fzf completion and key bindings.
-source /usr/share/doc/fzf/examples/completion.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+################## Cross-Platform Adaptations ##############
+# 1. Dynamically source FZF from the correct OS location safely
+if [[ -f /usr/share/fzf/completion.zsh ]]; then
+  # Arch Linux paths
+  source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+elif [[ -f /usr/share/doc/fzf/examples/completion.zsh ]]; then
+  # Ubuntu / Pop!_OS paths
+  source /usr/share/doc/fzf/examples/completion.zsh
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 
-export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+# 2. Assign the right binary variant for FD (fd vs fdfind)
+if command -v fd &>/dev/null; then
+  FD_CMD="fd"
+elif command -v fdfind &>/dev/null; then
+  FD_CMD="fdfind"
+else
+  FD_CMD="find"
+fi
+
+export FZF_DEFAULT_COMMAND="$FD_CMD --type f --strip-cwd-prefix --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fdfind --type d --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND="$FD_CMD --type d --strip-cwd-prefix --hidden --follow --exclude .git"
 
 ######################## Oh My Zsh #########################
-zstyle ':omz:update' mode auto # Keep Oh My Zsh updates automatic.
+zstyle ':omz:update' mode auto 
 zstyle ':omz:update' frequency 13
 
 plugins=(
@@ -67,16 +78,11 @@ alias ai_web_stop='pkill -f "open-webui serve"'
 fpath=(~/.zsh/completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions /usr/share/zsh/vendor-completions $fpath)
 
-eval "$(uv generate-shell-completion zsh)"
-eval "$(maturin completions zsh)"
-
-source "$ZSH/oh-my-zsh.sh" #!!! THIS MUST BE SOURCED AFTER PLUGINS ARE DEFINED !!!
+source "$ZSH/oh-my-zsh.sh"
 
 autoload -U compinit
 compinit -i
 
 ######################### Keybinds #########################
-
-bindkey '^@' menu-select # Ctrl+Space triggers the menu
+bindkey '^@' menu-select         # Ctrl+Space triggers the menu
 bindkey '^[y' autosuggest-accept # Alt+y accepts autosuggestions
-
