@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-if ! declare -F log_info >/dev/null 2>&1; then
-  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  # shellcheck source=lib/common.sh
-  source "$SCRIPT_DIR/lib/common.sh"
-fi
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib/common.sh"
+
+ensure_base_tools
 
 version_ge() {
   local current="${1#v}"
@@ -29,7 +28,7 @@ if ! command -v nvim >/dev/null 2>&1; then
   install_nvim_release
 else
   NVIM_VERSION="$(nvim --version | awk 'NR==1 {print $2}')"
-  if ! version_ge "$NVIM_VERSION" "0.12.0"; then
+  if ! version_ge "$NVIM_VERSION" "0.10.0"; then
     log_info "Upgrading Neovim from $NVIM_VERSION"
     install_nvim_release
     NVIM_VERSION="$(nvim --version | awk 'NR==1 {print $2}')"
@@ -39,25 +38,18 @@ else
 fi
 
 NVIM_VERSION="$(nvim --version | awk 'NR==1 {print $2}')"
-if ! version_ge "$NVIM_VERSION" "0.12.0"; then
-  log_error "Neovim $NVIM_VERSION is too old; 0.12.0 or newer is required."
+if ! version_ge "$NVIM_VERSION" "0.10.0"; then
+  log_error "Neovim $NVIM_VERSION is too old; 0.10.0 or newer is required."
   exit 1
 fi
 log_info "Verified Neovim version: $NVIM_VERSION"
 
 if ! command -v tree-sitter >/dev/null 2>&1; then
   log_info "Installing tree-sitter CLI"
-  if ! command -v npm >/dev/null 2>&1 && [[ -s "$HOME/.nvm/nvm.sh" ]]; then
-    export NVM_DIR="$HOME/.nvm"
-    # shellcheck disable=SC1090
-    . "$NVM_DIR/nvm.sh"
-    nvm use --silent default >/dev/null 2>&1 || true
-  fi
-
   if command -v npm >/dev/null 2>&1; then
     npm install -g tree-sitter-cli
   else
-    log_warn "npm not found; skipping tree-sitter CLI install (run 30-tools-node.sh first)."
+    log_warn "npm not found; skipping tree-sitter CLI install (ensure nodejs/npm are installed by the apt step)."
   fi
 else
   log_info "tree-sitter CLI already installed"

@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-if ! declare -F log_info >/dev/null 2>&1; then
-  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  # shellcheck source=lib/common.sh
-  source "$SCRIPT_DIR/lib/common.sh"
-fi
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib/common.sh"
 
 log_info "Configuring git"
 git config --global user.name "Vybornak2"

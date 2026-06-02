@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 
-if ! declare -F log_info >/dev/null 2>&1; then
-  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  # shellcheck source=lib/common.sh
-  source "$SCRIPT_DIR/lib/common.sh"
-fi
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib/common.sh"
 
 if ! command -v zsh >/dev/null 2>&1; then
-  log_info "Installing zsh"
-  sudo apt-get install -y zsh
-else
-  log_info "zsh already installed"
+  log_warn "zsh not found (expected to be installed by the apt step)"
+fi
+
+if ! command -v zoxide >/dev/null 2>&1; then
+  log_warn "zoxide not found (expected to be installed by the apt step)"
 fi
 
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-  log_info "Installing Oh My Zsh"
-  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  log_info "Installing Oh My Zsh (git clone)"
+  git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
 else
   log_info "Oh My Zsh already installed"
 fi
@@ -41,9 +39,3 @@ else
   log_info "zsh-syntax-highlighting already installed"
 fi
 
-if ! command -v zoxide >/dev/null 2>&1; then
-  log_info "Installing zoxide"
-  sudo apt-get install -y zoxide
-else
-  log_info "zoxide already installed"
-fi

@@ -70,3 +70,7 @@ ensure_src_dir() {
     log_info "Source directory already exists: $SRC_DIR"
   fi
 }
+
+ensure_base_tools() {
+  sudo apt-get install -y ca-certificates curl wget gpg unzip tar fontconfig
+}
