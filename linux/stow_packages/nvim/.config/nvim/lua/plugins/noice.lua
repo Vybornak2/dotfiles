@@ -2,6 +2,7 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
+        -- messages = { enabled = false },
         lsp = {
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
