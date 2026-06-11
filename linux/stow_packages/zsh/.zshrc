@@ -70,7 +70,7 @@ alias dt='cd ~/Desktop'
 alias pr='cd ~/Projects'
 alias ipy='uv tool run ipython'
 alias nv='nvim'
-alias ai='ollama run qwen2.5-coder:7b'
+alias ai='ollama run qwen2.5-coder:7b-caveman'
 alias ai_web='open-webui serve > /dev/null 2>&1 & sleep 5 && xdg-open http://localhost:8080'
 alias ai_web_stop='pkill -f "open-webui serve"'
 
