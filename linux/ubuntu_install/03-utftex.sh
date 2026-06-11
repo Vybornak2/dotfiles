@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/common.sh
 source "$SCRIPT_DIR/lib/common.sh"
 
 ensure_src_dir
@@ -20,13 +22,13 @@ if ! command -v utftex >/dev/null 2>&1; then
   if [[ ! -x "$LIBTEX_SRC_DIR/configure" ]]; then
     log_info "Bootstrapping libtexprintf build files"
     (
-      cd "$LIBTEX_SRC_DIR"
+      cd "$LIBTEX_SRC_DIR" || exit 1
       sh autogen.sh
     )
   fi
 
   (
-    cd "$LIBTEX_SRC_DIR"
+    cd "$LIBTEX_SRC_DIR" || exit 1
     ./configure
     make -j"$(nproc)"
   )

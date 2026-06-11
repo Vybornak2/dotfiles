@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/common.sh
 source "$SCRIPT_DIR/lib/common.sh"
 
 DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -9,7 +11,8 @@ STOW_DIR="$DOTFILES_ROOT/linux/stow_packages"
 backup_conflict() {
   local path="$1"
   if [[ -e "$path" && ! -L "$path" ]]; then
-    local backup_path="${path}.bak.$(date +%Y%m%d%H%M%S)"
+    local backup_path
+    backup_path="${path}.bak.$(date +%Y%m%d%H%M%S)"
     mv "$path" "$backup_path"
     log_warn "Existing path moved to: $backup_path"
   fi
@@ -36,7 +39,7 @@ backup_conflict "$HOME/.config/alacritty"
 
 log_info "Stowing packages: zsh, nvim, vscode, alacritty"
 (
-  cd "$STOW_DIR"
+  cd "$STOW_DIR" || exit 1
   stow --target "$HOME" --restow zsh nvim vscode alacritty
 )
 

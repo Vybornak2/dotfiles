@@ -72,5 +72,6 @@ ensure_src_dir() {
 }
 
 ensure_base_tools() {
-  sudo apt-get install -y ca-certificates curl wget gpg unzip tar fontconfig
+  sudo apt-get update
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ca-certificates curl wget gpg unzip tar fontconfig
 }
