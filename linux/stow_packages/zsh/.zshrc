@@ -72,7 +72,6 @@ alias ipy='uv tool run ipython'
 alias nv='nvim'
 alias ai='ollama run qwen2.5-coder:7b-caveman'
 alias ait='ollama run gemma4:e4b-caveman'
-alias ai_web_stop='pkill -f "open-webui serve"'
 
 #################### Completion system #####################
 fpath=(~/.zsh/completions $fpath)
