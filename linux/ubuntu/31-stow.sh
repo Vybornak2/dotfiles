@@ -7,6 +7,8 @@ source "$SCRIPT_DIR/lib/common.sh"
 
 DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 STOW_DIR="$DOTFILES_ROOT/linux/stow_packages"
+VSCODE_SETTINGS_SOURCE="$STOW_DIR/vscode/.config/Code/User/settings.json"
+VSCODE_SETTINGS_TARGET="$HOME/.config/Code/User/settings.json"
 
 backup_conflict() {
   local path="$1"
@@ -16,6 +18,16 @@ backup_conflict() {
     mv "$path" "$backup_path"
     log_warn "Existing path moved to: $backup_path"
   fi
+}
+
+ensure_vscode_settings_symlink() {
+  if [[ -L "$HOME/.config/Code" ]]; then
+    rm "$HOME/.config/Code"
+  fi
+
+  mkdir -p "$(dirname "$VSCODE_SETTINGS_TARGET")"
+  rm -f "$VSCODE_SETTINGS_TARGET"
+  ln -s "$VSCODE_SETTINGS_SOURCE" "$VSCODE_SETTINGS_TARGET"
 }
 
 log_info "Preparing dotfile symlinks via stow"
@@ -37,11 +49,14 @@ backup_conflict "$HOME/.config/nvim"
 backup_conflict "$HOME/.config/Code/User/settings.json"
 backup_conflict "$HOME/.config/alacritty"
 
-log_info "Stowing packages: zsh, nvim, vscode, alacritty"
+log_info "Stowing packages: zsh, nvim, alacritty"
 (
   cd "$STOW_DIR" || exit 1
-  stow --target "$HOME" --restow zsh nvim vscode alacritty
+  stow --target "$HOME" --restow zsh nvim alacritty
 )
+
+log_info "Linking VS Code settings"
+ensure_vscode_settings_symlink
 
 log_info "Ensuring ~/.local/bin/env exists"
 mkdir -p "$HOME/.local/bin"
