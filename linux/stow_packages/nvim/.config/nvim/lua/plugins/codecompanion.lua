@@ -10,7 +10,7 @@ return {
                 markdown = {
                     dirs = {
                         -- vim.fn.getcwd() .. "/.prompts",
-                        "~/dotfiles/prompts",
+                        "~/dotfiles/ai/prompts",
                     },
                 },
             },
