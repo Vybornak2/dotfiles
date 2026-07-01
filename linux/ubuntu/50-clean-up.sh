@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/lib/common.sh"
 
 log_info "Verifying key tools"
-for cmd in zsh nvim code podman git rg fdfind lua luarocks alacritty utftex stow; do
+for cmd in zsh nvim code git rg fdfind lua luarocks alacritty utftex stow; do
   if command -v "$cmd" >/dev/null 2>&1; then
     log_info "OK: $cmd"
   else
