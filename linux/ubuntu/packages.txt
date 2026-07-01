@@ -31,4 +31,5 @@ shellcheck
 gh
 fonts-jetbrains-mono
 alacritty
+unzip
 
