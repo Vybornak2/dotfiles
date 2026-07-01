@@ -71,7 +71,7 @@ alias pr='cd ~/Projects'
 alias ipy='uv tool run ipython'
 alias nv='nvim'
 alias ai='ollama run qwen2.5-coder:7b-caveman'
-alias ai_web='open-webui serve > /dev/null 2>&1 & sleep 5 && xdg-open http://localhost:8080'
+alias ait='ollama run gemma4:e4b-caveman'
 alias ai_web_stop='pkill -f "open-webui serve"'
 
 #################### Completion system #####################
