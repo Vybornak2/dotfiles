@@ -86,8 +86,9 @@ return {
             -- Python
             basedpyright = {
                 settings = {
-                    python = {
+                    basedpyright = {
                         analysis = {
+                            typeCheckingMode = "strict",
                             autoSearchPaths = true,
                             diagnosticMode = "workspace",
                         },
