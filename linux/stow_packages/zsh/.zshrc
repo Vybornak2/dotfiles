@@ -67,7 +67,7 @@ PYTHON_VENV_NAME=".venv"
 ######################### Aliases ##########################
 alias hh='cd ~'
 alias dt='cd ~/Desktop'
-alias pr='cd ~/Projects'
+alias prc='cd ~/Projects'
 alias ipy='uv tool run ipython'
 alias nv='nvim'
 alias ai='ollama run qwen2.5-coder:7b-caveman'
