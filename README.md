@@ -2,7 +2,7 @@
 
 Personal development environment configuration and bootstrap.
 
-Configs:
+## Configs:
 
 - Neovim config
 - Zsh
