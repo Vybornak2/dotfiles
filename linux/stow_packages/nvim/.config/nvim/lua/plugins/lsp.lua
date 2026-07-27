@@ -80,7 +80,7 @@ return {
             end,
         })
 
-        -- Enable language servers (auto-installed). See :help lsp-config for customization.
+        -- Enable language servers installed through Mason. See :help lsp-config for customization.
         ---@type table<string, vim.lsp.Config>
         local servers = {
             -- Python
