@@ -10,6 +10,21 @@ return {
             --     enabled = true,
             --     path = vim.fn.stdpath("state") .. "/catppuccin", -- Saves compiled bytecode to standard state dir
             -- },
+            custom_highlights = function(colors)
+                return {
+                    DiagnosticError = { fg = colors.red },
+                    DiagnosticSignError = { fg = colors.red },
+
+                    DiagnosticWarn = { fg = colors.peach },
+                    DiagnosticSignWarn = { fg = colors.peach },
+
+                    DiagnosticInfo = { fg = colors.yellow },
+                    DiagnosticSignInfo = { fg = colors.yellow },
+
+                    DiagnosticHint = { fg = colors.lavender },
+                    DiagnosticSignHint = { fg = colors.lavender },
+                }
+            end,
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
