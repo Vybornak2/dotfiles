@@ -1,11 +1,12 @@
 return {
-    -- NOTE: some text
-    -- WARN: some text
-    --
-    -- TODO: some text
-    -- IMPL: some text
     -- FIX: some text
+    --
+    -- WARN: some text
+    -- IMPL: some text
     -- REFACTOR: some text
+    --
+    -- NOTE: some text
+    -- TODO: some text
     --
     -- REVIEW: some text
     -- TEST: some text
@@ -24,7 +25,7 @@ return {
 
             WARN = { icon = " ", color = "warning", alt = { "warn" } },
             IMPL = { icon = "", color = "warning", alt = { "impl" } },
-            REFACTOR = { icon = "", color = "warning", alt = { "refactor" } }, -- nf-fa-gear
+            REFACTOR = { icon = "", color = "warning", alt = { "refactor" } },
 
             NOTE = { icon = "", color = "info", alt = { "note" } },
             TODO = { icon = " ", color = "info", alt = { "todo" } },
