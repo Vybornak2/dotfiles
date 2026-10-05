@@ -1,7 +1,5 @@
 {
-    // ==================================================
     // PYLANCE SETTINGS - LANGUAGE SERVER, TYPE CHECKING
-    // ==================================================
     "python.analysis.languageServerMode": "full",
     "python.analysis.typeCheckingMode": "strict",
     "python.analysis.importFormat": "relative",
@@ -9,20 +7,13 @@
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.pytestParameters": true,
     "python.analysis.autoFormatStrings": true,
-    // "python.analysis.include": [],
-    // "python.analysis.exclude": [],
-    // "python.analysis.extraPaths": [],
-    // ==================================================
+    "python.analysis.include": [],
+    "python.analysis.exclude": [],
+    "python.analysis.extraPaths": [],
     // PYTHON TESTING
-    // ==================================================
-    // "python.testing.autoTestDiscoverOnSaveEnabled": true, // default is true
-    // "python.testing.cwd": "${workspaceFolder}/tests",
-    // "python.testing.pytestPath": "${workspaceFolder}/.venv/bin/pytest",
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
-    // ==================================================
     // GENERAL SETTINGS
-    // ==================================================
     "files.autoSave": "onFocusChange",
     "security.workspace.trust.untrustedFiles": "newWindow",
     "window.commandCenter": false,
@@ -35,27 +26,23 @@
     "editor.codeActionsOnSave": {
         "source.organizeImports": "always",
         "source.fixAll": "always",
-        "source.convertImportFormat": "always",
+        "source.convertImportFormat": "never"
     },
     "workbench.iconTheme": "material-icon-theme",
     "workbench.editor.tabSizing": "shrink",
     "workbench.settings.editor": "json",
     "workbench.tree.indent": 25,
-    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "Dark+",
     "files.exclude": {
         ".git": true,
         "**/.git": false
     },
-    // ==================================================
     // NOTEBOOK SETTINGS
-    // ==================================================
     "notebook.defaultFormatter": "charliermarsh.ruff",
     "notebook.formatOnCellExecution": true,
     "notebook.formatOnSave.enabled": true,
     "jupyter.askForKernelRestart": false,
-    // ==================================================
     // COPILOT
-    // ==================================================
     "chat.viewSessions.orientation": "stacked",
     "inlineChat.enableV2": true,
     "github.copilot.nextEditSuggestions.enabled": true,
@@ -67,16 +54,12 @@
         "yaml": true,
         "rust": false
     },
-    // ==================================================
     // GIT, GITHUB
-    // ==================================================
     "githubPullRequests.pullBranch": "never",
     "git.autofetch": true,
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
-    // ==================================================
     // VIM
-    // ==================================================
     "vim.foldfix": true,
     "vim.normalModeKeyBindings": [
         {
@@ -105,7 +88,7 @@
                 "e"
             ],
             "commands": [
-                "jupyter.execSelectionInteractive",
+                "jupyter.execSelectionInteractive"
             ]
         },
         {
@@ -114,7 +97,7 @@
                 "E"
             ],
             "commands": [
-                "python.execSelectionInTerminal",
+                "python.execSelectionInTerminal"
             ]
         }
     ],
@@ -125,9 +108,7 @@
         "<C-p>": false,
         "<C-i>": false
     },
-    // ==================================================
     // RUFF
-    // ==================================================
     "ruff.enable": true,
     "ruff.importStrategy": "useBundled",
     "ruff.lint.select": [
@@ -146,15 +127,11 @@
         "TD",
         "T20"
     ],
-    // ==================================================
     // FORMATTERS
-    // ==================================================
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
-    // ==================================================
     // OTHER
-    // ==================================================
     "autoDocstring.docstringFormat": "google",
     "better-comments.multilineComments": true
 }
