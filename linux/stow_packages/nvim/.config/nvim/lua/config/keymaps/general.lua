@@ -24,10 +24,12 @@ map("n", "<leader>e", function()
     Snacks.explorer.open()
 end, { desc = "Explorer" })
 
-map("n", "<leader><leader>", function()
-    Snacks.picker.files()
-end, { desc = "Find Files" })
+--[[ Conform ]]
+map({ "n", "v" }, "<leader><leader>", function()
+    require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format buffer" })
 
+--[[ Snacks ]]
 map("n", "<leader>:", function()
     Snacks.picker.command_history()
 end, { desc = "Command History" })

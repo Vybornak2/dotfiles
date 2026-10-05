@@ -65,9 +65,17 @@ end, { desc = "Marks" })
 
 map("n", "<leader>so", grep_open_files, { desc = "Open Files" })
 
+map("n", "<leader>ss", function()
+    Snacks.picker.resume()
+end, { desc = "Resume" })
+
 map("n", "<leader>sr", function()
     Snacks.picker.recent()
 end, { desc = "Recent Files" })
+
+map("n", "<leader>sR", function()
+    Snacks.picker.registers()
+end, { desc = "Registers" })
 
 map({ "n", "v" }, "<leader>sw", function()
     Snacks.picker.grep_word()
