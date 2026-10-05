@@ -37,3 +37,5 @@ function hh { Set-Location ~ }
 function dt { Set-Location ~/Desktop }
 function prc { Set-Location ~/Projects }
 function ipy { uv tool run ipython @args }
+
+Set-PSReadLineKeyHandler -Chord 'Ctrl+Enter' -Function AddLine
