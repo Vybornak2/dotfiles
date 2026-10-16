@@ -1,3 +1,5 @@
+local is_windows = vim.fn.has("win32") == 1
+
 return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
@@ -13,7 +15,7 @@ return {
                 return nil
             else
                 return {
-                    timeout_ms = 500,
+                    timeout_ms = 1000,
                     lsp_format = "fallback",
                 }
             end
@@ -22,5 +24,17 @@ return {
             lua = { "stylua" },
             python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
         },
+
+        formatters = is_windows and {
+            ruff_fix = {
+                command = "ruff.exe",
+            },
+            ruff_organize_imports = {
+                command = "ruff.exe",
+            },
+            ruff_format = {
+                command = "ruff.exe",
+            },
+        } or {},
     },
 }
