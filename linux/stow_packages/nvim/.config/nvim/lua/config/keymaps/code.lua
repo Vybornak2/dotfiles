@@ -11,8 +11,3 @@ end, { desc = "Docsrting" })
 map({ "n", "v" }, "<leader>cf", function()
     require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format buffer" })
-
---[[ Conform ]]
-map({ "n", "v" }, "<leader><leader>f", function()
-    require("conform").format({ async = true, lsp_format = "fallback" })
-end, { desc = "Format buffer" })

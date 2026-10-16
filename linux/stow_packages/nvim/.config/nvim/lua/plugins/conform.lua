@@ -22,10 +22,5 @@ return {
             lua = { "stylua" },
             python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
         },
-        formatters = {
-            isort = {
-                prefer_relative_imports = true,
-            },
-        },
     },
 }
