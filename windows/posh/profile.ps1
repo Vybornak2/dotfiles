@@ -1,9 +1,5 @@
 ################################## Oh My Posh ##################################
-$omp_cache = "$env:TEMP\omp_profile.ps1"
-if (-not (Test-Path $omp_cache)) {
-    oh-my-posh init powershell --config "$HOME\dotfiles\windows\posh\config.omp.json" --print > $omp_cache
-}
-. $omp_cache
+oh-my-posh init powershell --config "$HOME\dotfiles\windows\posh\config.omp.json" | Invoke-Expression
 
 #################################### Zoxide ####################################
 $zoxide_cache = "$env:TEMP\zoxide_profile.ps1"

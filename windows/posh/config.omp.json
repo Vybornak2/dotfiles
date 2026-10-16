@@ -7,6 +7,7 @@
         "lavender": "#B4BEFE",
         "blue": "#89B4FA",
         "yellow": "#F9E2AF",
+        "green": "#A6E3A1",
         "overlay": "#6C7086"
     },
     "blocks": [
@@ -57,6 +58,16 @@
                         "fetch_status": true,
                         "fetch_upstream_icon": true,
                         "source": "cli"
+                    }
+                },
+                {
+                    "type": "python",
+                    "style": "plain",
+                    "foreground": "p:green",
+                    "template": " {{ if .Venv }}({{ .Venv }}) {{ end }}{{ .Full }} ",
+                    "options": {
+                        "display_mode": "environment",
+                        "fetch_virtual_env": true
                     }
                 },
                 {
