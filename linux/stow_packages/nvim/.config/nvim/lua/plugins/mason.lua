@@ -10,6 +10,7 @@ local tools = {
         "taplo",
         "cmake-language-server",
         "dockerfile-language-server",
+        "tinymist",
     },
     formatters = {
         "ruff",

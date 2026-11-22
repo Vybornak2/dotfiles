@@ -26,6 +26,7 @@ return {
             "regex",
             "rust",
             "toml",
+            "typst",
             "vim",
             "vimdoc",
             "yaml",

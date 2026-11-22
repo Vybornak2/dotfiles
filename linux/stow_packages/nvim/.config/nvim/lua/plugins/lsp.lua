@@ -157,6 +157,12 @@ return {
             taplo = {}, -- TOML
             cmake = {},
             dockerls = {},
+            tinymist = {
+                settings = {
+                    formatterMode = "typstyle",
+                    exportPdf = "never",
+                },
+            },
         }
 
         for name, server in pairs(servers) do
